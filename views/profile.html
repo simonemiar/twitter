@@ -155,7 +155,8 @@
     <!-- end left -->
     
     <!-- center -->
-    <div class="h-full min-h-screen border-gray-600 border-x">
+    <div class="h-full min-h-screen border-zinc-800 border-x">
+      <!-- profile navigation -->
       <div class="sticky top-0 px-2 h-14 backdrop-blur bg-black/60">
         <div class="flex w-full">
           <div class="mr-2 min-w-[53px] m-2 flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg></div>
@@ -165,12 +166,51 @@
         </div>
         </div>
       </div>
-      <div class="">
+      <!-- profile navigation -->
+
+      <!-- profile description -->
+      <div>
         <a href="">
           <img src="/images/elon_bg.jpeg" alt="">
         </a>
-        <div class="px-4">
-          <div></div>
+        <div class="px-4 py-3">
+          <div class="flex items-start justify-between text-white">
+            <div class="w-1/4 -mt-20 bg-black rounded-full">
+              <img class="p-1 rounded-full" src="/thumbnails/1.jpg" alt="">
+            </div>
+            <div class="flex gap-2">
+              <div class="border border-gray-600 rounded-full min-w-[36px] min-h-[36px] flex justify-center">
+                <div class="flex items-center">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  class="ml-auto"
+                >
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z"
+                  />
+                </svg>
+              </div>
+              </div>
+              <div class="border border-gray-600 rounded-full min-w-[36px] min-h-[36px] flex justify-center">
+                <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="ml-auto "><path fill="currentColor" d="M12 2c-1.1 0-2 .9-2 2v.29C7.12 5.14 5 7.82 5 11v6l-2 2v1h9.35a5.93 5.93 0 0 1-.35-2H7v-7c0-2.76 2.24-5 5-5s5 2.24 5 5v1.09a5.634 5.634 0 0 1 2 0V11c0-3.18-2.12-5.86-5-6.71V4a2 2 0 0 0-2-2m5 12v3h-3v2h3v3h2v-3h3v-2h-3v-3m-9 7a2 2 0 0 0 3.65 1.13c-.32-.34-.6-.72-.84-1.13Z"/></svg>
+              </div>
+              </div>
+                <div class="border border-gray-600 rounded-full min-w-[104px] flex justify-center">
+                  <div class="flex items-center">
+                <button class="text-sm font-bold">Following</button>
+              </div>
+              </div>
+
+            </div>
+          </div>
           <div class="my-2">
             <h1 class="text-xl font-bold ">{{user["first_name"]}} {{user["last_name"]}}</h1>
             <p class="text-sm text-gray-500">@{{user["username"]}}</p>
@@ -188,6 +228,28 @@
           </div>
         </div>
       </div>
+      <!-- profile description end-->
+
+      <!-- profile loop view-->
+      <div class="flex border-b border-zinc-800">
+        <a href="" class="w-full p-4 text-sm font-bold text-center hover:bg-zinc-900"
+          ><span class="pb-4 border-b-4 border-blue-500 rounded-sm"
+            >Tweets</span
+          ></a
+        >
+        <a href="" class="w-full p-4 text-sm font-semibold text-center text-zinc-500 hover:bg-zinc-900"
+          >Tweets & replies</a
+        >
+        <a href="" class="w-full p-4 text-sm font-semibold text-center text-zinc-500 hover:bg-zinc-900"
+          >Media</a
+        >
+        <a href="" class="w-full p-4 text-sm font-semibold text-center text-zinc-500 hover:bg-zinc-900"
+          >Links</a
+        >
+        
+      </div>
+      <!-- profile loop view end-->
+
     </div>
     <!-- end center -->
 
