@@ -20,9 +20,9 @@ def git_update():
 # For now, we just hard codedthe data
 tweets = [
   { "verified": 1, "image_name":"1.jpg", "fullname":"Simone Kragh-Jacobsen", "username":"simonemiar","message":"My first tweet","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
-  { "verified": 1, "image_name":"2.jpg", "fullname":"Joe Biden", "username":"joebiden","message":"I am THE president","message_image":"1.png","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
+  { "verified": 1, "image_name":"2.jpg", "fullname":"Rihanna", "username":"rihanna","message":"I am THE president","message_image":"1.png","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
   { "verified": 1, "image_name":"1.jpg", "fullname":"Elon Musk", "username":"elonmusk","message":"My first tweet","message_image":"1.png","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
-  { "verified": 1, "image_name":"1.jpg", "fullname":"Shakira", "username":"shakira","message":"My first tweet","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
+  { "verified": 1, "image_name":"3.jpg", "fullname":"Shakira", "username":"shakira","message":"My first tweet","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
 
 ]
 
@@ -36,7 +36,7 @@ trends = [
 
 follows =  [
   {"image_name":"1.jpg", "fullname": "Elon Musk", "username": "elonmusk"},
-  {"image_name":"2.jpg", "fullname": "Joe Biden", "username": "joe Biden"},
+  {"image_name":"2.jpg", "fullname": "Joe Biden", "username": "joebiden"},
   {"image_name":"3.jpg", "fullname": "Shakira", "username": "shakira"},
 ]
 
@@ -81,20 +81,6 @@ def render_index():
   return template("index", title="Twitter", tweets=tweets, trends=trends, follows=follows, server="paste")
 
 
-##############################
-@get("/about")
-def render_index():
-  return template("about", title="about")
-
-##############################
-@get("/contact")
-def render_index():
-  return template("contact", title="contact")
-
-##############################
-@get("/explore")
-def render_index():
-  return template("explore", title="explore")
 
 ##############################
 
@@ -121,7 +107,7 @@ def _(username):
     # pass the tweets to the view. Template it
     
     print(user) # {'id': '51602a9f7d82472b90ed1091248f6cb1', 'username': 'elonmusk', 'name': 'Elon', 'last_name': 'Musk', 'total_followers': '128900000', 'total_following': '177', 'total_tweets': '22700', 'avatar': '51602a9f7d82472b90ed1091248f6cb1.jpg'}
-    return template("profile", user=user)
+    return template("profile", user=user, trends=trends)
   except Exception as ex:
     print(ex)
     return "error"

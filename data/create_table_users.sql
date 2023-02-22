@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users(
   id                TEXT,
   username          TEXT,
-  name              TEXT,
+  first_name        TEXT,
   last_name         TEXT,
   total_followers   TEXT,
   total_following   TEXT,
