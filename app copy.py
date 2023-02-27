@@ -4,15 +4,6 @@ from bottle import get, post, run, view, template, static_file, response, reques
 import sqlite3
 import git
 import os
-import x
-
-
-import apis.api_tweet
-
-
-@get("/js/<filename>")
-def _(filename):
-  return static_file(filename, "js")
 
  
 @post('/secret_url_for_git_hook')
@@ -32,6 +23,7 @@ tweets = [
   { "verified": 1, "image_name":"2.jpg", "fullname":"Rihanna", "username":"rihanna","message":"I am THE president","message_image":"1.png","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
   { "verified": 1, "image_name":"1.jpg", "fullname":"Elon Musk", "username":"elonmusk","message":"My first tweet","message_image":"1.png","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
   { "verified": 1, "image_name":"3.jpg", "fullname":"Shakira", "username":"shakira","message":"My first tweet","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
+
 ]
 
 trends = [
@@ -86,7 +78,8 @@ def _():
 ##############################
 @get("/")
 def render_index():
-  return template("index", title="Twitter", tweets=tweets, trends=trends, follows=follows, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
+  return template("index", title="Twitter", tweets=tweets, trends=trends, follows=follows, server="paste")
+
 
 
 ##############################

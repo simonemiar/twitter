@@ -150,12 +150,12 @@
       <div class="sticky top-0 backdrop-blur">
         <p class="p-4 text-xl font-bold">Home</p>
         <div class="flex">
-          <a href="" class="w-full p-4 text-center hover:bg-zinc-900"
+          <a href="" class="w-full p-4 text-base font-bold text-center hover:bg-zinc-900"
             ><span class="pb-4 border-b-4 border-blue-500 rounded-sm"
               >For you</span
             ></a
           >
-          <a href="" class="w-full p-4 text-center hover:bg-zinc-900"
+          <a href="" class="w-full p-4 text-base text-center text-zinc-500 hover:bg-zinc-900"
             >Following</a
           >
         </div>
@@ -180,14 +180,19 @@
           </svg>
         </div>
         <div class="w-full p-4">
-          <textarea
+          <!-- <textarea
             class="w-full p-2 text-gray-200 outline-none resize-none bg-inherit"
             name=""
             id=""
             cols="30"
             rows="2"
             placeholder="what's happening?"
-          ></textarea>
+          ></textarea> -->
+          <form method="POST" onsubmit="validate(tweet); return false">
+            <input name="message" type="text" data-validate="str" data-min="{{tweet_min_len}}" data-max="{{tweet_max_len}}">
+            <button>Tweet</button>
+          </form>
+
           <div class="flex w-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -648,5 +653,22 @@
       <!-- end who to follow  -->
     </div>
     <!-- end right -->
+
+    <!-- script tags -->
+    <script src="/js/validate.js"></script>
+
+    <script>
+        async function tweet(){
+            const frm = event.target // this is the form
+            const conn = await fetch("/tweet", {
+                method: "POST",
+                body: new FormData(frm)
+
+            })
+            const data = await conn.text()
+            console.log(data)
+
+        }
+    </script>
   </body>
 </html>
