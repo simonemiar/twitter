@@ -19,11 +19,19 @@ def db():
     pass
 
 
-TWEET_MIN_LEN = 2
-TWEET_MAX_LEN = 5
+TWEET_MIN_LEN = 1
+TWEET_MAX_LEN = 10
+
+EMAIL = "a@a.dk"
+PASSWORD = "123"
 
 def validate_tweet():
-  error = f"tweet min {TWEET_MIN_LEN} max {TWEET_MAX_LEN} characters"
-  if len(request.forms.get("message")) < TWEET_MIN_LEN: raise Exception(error)
-  if len(request.forms.get("message")) > TWEET_MAX_LEN: raise Exception(error)
-  return request.forms.get("message")
+  error = f"message min {TWEET_MIN_LEN} max {TWEET_MAX_LEN} characters"
+  if len(request.forms.message) < TWEET_MIN_LEN: raise Exception(error)
+  if len(request.forms.message) > TWEET_MAX_LEN: raise Exception(error)
+  return request.forms.message
+
+# def validate_login():
+#   error = f"user do not exists"
+#   if request.forms.email == EMAIL: raise Exception(error)
+#   return request.forms.email

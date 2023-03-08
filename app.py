@@ -8,7 +8,22 @@ import x
 
 
 import apis.api_tweet
+import bridges.login
 
+
+############# LOGIN AND LOGOUT #################
+@get("/login")
+def _():
+    return template("login")
+
+@get("/logout")
+def _():
+    response.set_cookie("user", "", expires=0)
+    response.status = 303
+    response.set_header("Location", "/login")
+    return
+
+##############################
 
 @get("/js/<filename>")
 def _(filename):
@@ -28,7 +43,7 @@ def git_update():
 # This data will come from the database
 # For now, we just hard codedthe data
 tweets = [
-  { "verified": 1, "image_name":"1.jpg", "fullname":"Simone Kragh-Jacobsen", "username":"simonemiar","message":"My first tweet","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
+  { "verified": 1, "image_name":"1.jpg", "fullname":"Simone Kragh-Jacobsen", "username":"simonemiar","message":"lol","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
   { "verified": 1, "image_name":"2.jpg", "fullname":"Rihanna", "username":"rihanna","message":"I am THE president","message_image":"1.png","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
   { "verified": 1, "image_name":"1.jpg", "fullname":"Elon Musk", "username":"elonmusk","message":"My first tweet","message_image":"1.png","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
   { "verified": 1, "image_name":"3.jpg", "fullname":"Shakira", "username":"shakira","message":"My first tweet","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
@@ -86,7 +101,12 @@ def _():
 ##############################
 @get("/")
 def render_index():
-  return template("index", title="Twitter", tweets=tweets, trends=trends, follows=follows, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
+  response.add_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
+  response.add_header("Pragma", "no-cache")
+  response.add_header("Expires", 0)
+  user = request.get_cookie("user", secret="my-secret")
+  print("app", user)
+  return template("index", title="Twitter", user=user, tweets=tweets, trends=trends, follows=follows, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
 
 
 ##############################
@@ -98,13 +118,13 @@ def dict_factory(cursor, row):
 ##############################
 # profile page setup 
 
-@get("/<username>")
+@get("/<user_username>")
 # @view("profile")
-def _(username):
+def _(user_username):
   try:
     db = sqlite3.connect(os.getcwd()+"/twitter.db")
     db.row_factory = dict_factory
-    user = db.execute("SELECT * FROM users WHERE username=? COLLATE NOCASE",(username,)).fetchall()[0]
+    user = db.execute("SELECT * FROM users WHERE user_username=? COLLATE NOCASE",(user_username,)).fetchall()[0]
     # Get the user's id
     user_id = user["id"]
     print(f"user id:{user_id}")
