@@ -6,13 +6,19 @@ import traceback
 @post("/api-sign-up")
 def _():
     try:
-        user_name = x.validate_user_name()
+        username = x.validate_username()
+        first_name = x.validate_first_name()
+        last_name = x.validate_last_name()
+        email = x.validate_email()
+        password = x.validate_password()
+
+        # user_email = request.forms.get("user_email")
         return "ok"
     except Exception as e:
         print(e)
         return {"info":str(e)}
     finally:
-        # if "db" in locals(): db.close()
+        if "db" in locals(): db.close()
         pass
 
 

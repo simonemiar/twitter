@@ -45,17 +45,70 @@ PASSWORD = "123"
 ###################################
 USER_NAME_MIN = 4 
 USER_NAME_MAX = 15 
-# english letters only and numbers from 0 to 9
-USER_NAME_REGEX = "^[a-zA-Z0-9\_]*$"
+USER_NAME_REGEX = "^[a-zA-Z0-9_-]{4,20}$"
 
-def validate_user_name():
+def validate_username():
   print("*"*30)
   # print u"some unicode text \N{EURO SIGN}"
   # print b"some utf-8 encoded bytestring \xe2\x82\xac".decode('utf-8')
-  print(request.forms.user_name)
-  error = f"user_name {USER_NAME_MIN} to {USER_NAME_MAX} english letters or numbers from 0-9"
-  request.forms.user_name = request.forms.user_name.strip()
-  if len(request.forms.user_name) < USER_NAME_MIN: raise Exception(error)
-  if len(request.forms.user_name) > USER_NAME_MAX: raise Exception(error)
-  if not re.match(USER_NAME_REGEX, request.forms.user_name): raise Exception(error)
-  return request.forms.user_name
+  print(request.forms.username)
+  error = f"username has to be between {USER_NAME_MIN} to {USER_NAME_MAX} english letters or numbers from 0-9"
+  request.forms.username = request.forms.username.strip()
+  if len(request.forms.username) < USER_NAME_MIN: raise Exception(error)
+  if len(request.forms.username) > USER_NAME_MAX: raise Exception(error)
+  if not re.match(USER_NAME_REGEX, request.forms.username): raise Exception(error)
+  return request.forms.username
+
+
+###########
+USER_FIRST_NAME_MIN_LENGTH = 2
+USER_FIRST_NAME_MAX_LENGTH = 20
+USER_FIRST_NAME_REGEX = "^[a-zA-Z\s]*$"
+
+def validate_first_name():
+  print("*"*30)
+  error = f"first_name has to be between {USER_FIRST_NAME_MIN_LENGTH} to {USER_FIRST_NAME_MAX_LENGTH} english letters"
+  if len(request.forms.first_name) < USER_FIRST_NAME_MIN_LENGTH: raise Exception(error)
+  if len(request.forms.first_name) > USER_FIRST_NAME_MAX_LENGTH: raise Exception(error)
+  if not re.match(USER_FIRST_NAME_REGEX, request.forms.first_name): raise Exception(error)  
+  print(request.forms.first_name)
+  return request.forms.first_name
+
+# ###########
+USER_LAST_NAME_MIN_LENGTH = 2
+USER_LAST_NAME_MAX_LENGTH = 20
+USER_LAST_NAME_REGEX = "^[a-zA-Z\s]*$"
+
+def validate_last_name():
+  print("*"*30)
+  error = f"last_name has to be between {USER_LAST_NAME_MIN_LENGTH} to {USER_LAST_NAME_MAX_LENGTH} english letters"
+  if len(request.forms.last_name) < USER_LAST_NAME_MIN_LENGTH: raise Exception(error)
+  if len(request.forms.last_name) > USER_LAST_NAME_MAX_LENGTH: raise Exception(error)
+  if not re.match(USER_LAST_NAME_REGEX, request.forms.last_name): raise Exception(error)  
+  print(request.forms.last_name)
+  return request.forms.last_name
+
+
+###########
+REGEX_EMAIL = '^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+
+def validate_email():
+  print("*"*30)
+  error = f"An email address consists of a username, an @ sign, and a domain name"
+  if not re.match(REGEX_EMAIL, request.forms.email): raise Exception(error)
+  print(request.forms.email)
+  return request.forms.email
+
+# ###########
+USER_PASSWORD_MIN_LENGTH = 8
+USER_PASSWORD_MAX_LENGTH = 50
+REGEX_PASSWORD = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$"
+
+def validate_password():
+  print("*"*30)
+  error = f"Password has to be between {USER_PASSWORD_MIN_LENGTH} to {USER_PASSWORD_MAX_LENGTH} numbers, at least one upper case English letter, one lower case English letter and one number"
+  if len(request.forms.password) < USER_PASSWORD_MIN_LENGTH: raise Exception(error)
+  if len(request.forms.password) > USER_PASSWORD_MAX_LENGTH: raise Exception(error)
+  if not re.match(REGEX_PASSWORD, request.forms.password): raise Exception(error)  
+  print(request.forms.password)
+  return request.forms.password

@@ -4,15 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/app.css" />
     <title>Document</title>
 </head>
-<body>
-    <form method="POST" action="/signup">
-        <input name="first_name" type="text" placeholder="first_name">
-        <input name="last_name" type="text" placeholder="last_name">
-        <input name="email" type="text" placeholder="email">
-        <input name="password" type="password" placeholder="password">
-        <button>Login</button>
-    </form>
+<body class="bg-black">
+    <section class="flex items-center justify-center min-h-screen ">
+        <div>
+            <div class="grid justify-center m-8">
+                <img class="w-20" src="/images/twitter_bird_logo.png" alt="twitter logo">
+            </div>
+            <h1 class="my-2 text-2xl text-white">Sign Up</h1>
+            <form class="grid gap-2" method="POST" action="/sign-up">
+                <label class="text-white" for="username">Username</label>
+                <input class="p-2 text-sm" name="user_name" type="text" placeholder="first_name">
+                <label class="text-white" for="first_name">First name</label>
+                <input class="p-2 text-sm" name="first_name" type="text" placeholder="first_name">
+                <label class="text-white" for="Last_name">Last name</label>
+                <input class="p-2 text-sm" name="last_name" type="text" placeholder="last_name">
+                <label class="text-white" for="email">Email</label>
+                <input class="p-2 text-sm" name="email" type="text" placeholder="email">
+                <label class="text-white" for="password">Password</label>
+                <input class="p-2 text-sm" name="password" type="password" placeholder="password">
+                <button class="p-2 text-xl text-white bg-sky-500">Sign Up</button>
+            </form>
+        </div>
+    </section>
 </body>
 </html>
