@@ -2,6 +2,7 @@ from bottle import post, request, response
 import x
 import uuid
 import time
+import traceback
 
 @post("/tweet")
 def _():

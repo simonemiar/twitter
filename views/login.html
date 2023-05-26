@@ -4,14 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/app.css" />
     <title>Document</title>
 </head>
-<body>
-    <form method="POST" action="/login">
-        <input name="email" type="text" placeholder="email">
-        <input name="password" type="password" placeholder="password">
-        <button>Login</button>
-    </form>
+<body class="bg-black">
+    <section class="flex items-center justify-center min-h-screen ">
+        <div>
+            <div class="grid justify-center m-8">
+                <img class="w-20" src="/images/twitter_bird_logo.png" alt="twitter logo">
+            </div>
+            <h1 class="my-2 text-2xl text-white">Sign In</h1>
+            <form class="grid gap-2" method="POST" action="/login">
+                <label class="text-white" for="email">Email</label>
+                <input class="p-2 text-sm" name="email" type="text" placeholder="Please insert your email">
+                <label class="text-white" for="password">Password</label>
+                <input class="p-2 text-sm" name="password" type="password" placeholder="Please insert your password">
+                <button class="p-1 text-white bg-sky-500">Sign In</button>
+            </form>
+            <a class="text-xs text-gray-600" href="">forgot your password?</a>
+        </div>
+</section>
 </body>
 </html>
 Footer

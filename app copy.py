@@ -99,7 +99,7 @@ def _(username):
     db.row_factory = dict_factory
     user = db.execute("SELECT * FROM users WHERE username=? COLLATE NOCASE",(username,)).fetchall()[0]
     # Get the user's id
-    user_id = user["id"]
+    user_id = user["user_id"]
     print(f"user id:{user_id}")
     # With that id, look up/get the respectives tweets
     tweets = db.execute("SELECT * FROM tweets WHERE tweet_user_fk=?", (user_id,)).fetchall()

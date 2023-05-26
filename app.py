@@ -5,16 +5,24 @@ import sqlite3
 import git
 import os
 import x
+import traceback
 
 
 import apis.api_tweet
+import apis.api_sign_up
+import apis.api_follow
 import bridges.login
+import views.test
 
 
 ############# LOGIN AND LOGOUT #################
 @get("/login")
 def _():
     return template("login")
+
+@get("/signup")
+def _():
+    return template("signup")
 
 @get("/logout")
 def _():
@@ -126,7 +134,7 @@ def _(user_username):
     db.row_factory = dict_factory
     user = db.execute("SELECT * FROM users WHERE user_username=? COLLATE NOCASE",(user_username,)).fetchall()[0]
     # Get the user's id
-    user_id = user["id"]
+    user_id = user["user_id"]
     print(f"user id:{user_id}")
     # With that id, look up/get the respectives tweets
     tweets = db.execute("SELECT * FROM tweets WHERE tweet_user_fk=?", (user_id,)).fetchall()
