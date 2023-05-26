@@ -14,20 +14,37 @@
                 <img class="w-20" src="/images/twitter_bird_logo.png" alt="twitter logo">
             </div>
             <h1 class="my-2 text-2xl text-white">Sign Up</h1>
-            <form class="grid gap-2" method="POST" action="/sign-up">
+            <form class="grid gap-2" onsubmit="signUp(); return false">
                 <label class="text-white" for="username">Username</label>
-                <input class="p-2 text-sm" name="user_name" type="text" placeholder="first_name">
+                <input class="p-2 text-sm" name="user_username" type="text" placeholder="Username">
                 <label class="text-white" for="first_name">First name</label>
-                <input class="p-2 text-sm" name="first_name" type="text" placeholder="first_name">
-                <label class="text-white" for="Last_name">Last name</label>
-                <input class="p-2 text-sm" name="last_name" type="text" placeholder="last_name">
+                <input class="p-2 text-sm" name="user_first_name" type="text" placeholder="Firstname">
+                <label class="text-white" for="last_name">Last name</label>
+                <input class="p-2 text-sm" name="user_last_name" type="text" placeholder="Lastname">
                 <label class="text-white" for="email">Email</label>
-                <input class="p-2 text-sm" name="email" type="text" placeholder="email">
+                <input class="p-2 text-sm" name="user_email" type="text" placeholder="Email">
                 <label class="text-white" for="password">Password</label>
-                <input class="p-2 text-sm" name="password" type="password" placeholder="password">
+                <input class="p-2 text-sm" name="user_password" type="password" placeholder="Password">
                 <button class="p-2 text-xl text-white bg-sky-500">Sign Up</button>
             </form>
         </div>
     </section>
+    <script>
+        async function signUp(){
+            const frm = event.target 
+            console.log(new FormData(frm))
+            const conn = await fetch("/api-signup", {
+                method: "POST",
+                body: new FormData(frm)
+
+            })
+            const data = await conn.json()
+            console.log("User created", data)
+            const username = frm.querySelector("input[name='user_username']").value
+            console.log(username)
+            
+
+        }
+    </script>
 </body>
 </html>

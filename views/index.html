@@ -196,7 +196,7 @@
         </div>
       </div>
 
-      <!-- whats happening div -->
+      <!-- whats happening div form -->
       <div class="flex">
         <div class="p-4">
           <svg
@@ -215,7 +215,7 @@
           </svg>
         </div>
         <form method="POST" onsubmit="validate(tweet); return false" class="w-full p-4">
-          <input name="message" type="text" class="w-full p-2 text-gray-200 outline-none resize-none bg-inherit" placeholder="what's happening?" data-validate="str" data-min="{{tweet_min_len}}" data-max="{{tweet_max_len}}">
+          <input name="tweet_message" type="text" class="w-full p-2 text-gray-200 outline-none resize-none bg-inherit" placeholder="what's happening?" data-validate="str" data-min="{{tweet_min_len}}" data-max="{{tweet_max_len}}">
         
 
         <div class="flex w-full">
@@ -692,7 +692,7 @@
           // const data = await conn.text()
           const data = await conn.json()
           console.log(data)
-          const message = frm.querySelector("input[name='message']").value
+          const message = frm.querySelector("input[name='tweet_message']").value
           console.log(message)
           document.querySelector("#tweets").insertAdjacentHTML("afterbegin", 
           `<div class="tweet">
@@ -701,6 +701,7 @@
           )
 
         }
+
         function logoutBtn(){
           console.log("logout popup")
           const test = document.querySelector("#logout_btn");

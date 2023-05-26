@@ -10,7 +10,9 @@ def _():
         # x.validate_login()
         db = x.db()
         # user_email = request.forms.get("email")
-        user_email = "a@a.dk"
+        # user_password = request.forms.get("password")
+
+        user_email = "b@b.dk"
         user_password = "123"
         user = db.execute("SELECT * FROM users WHERE user_email=? COLLATE NOCASE",(user_email,)).fetchall()
         password = db.execute("SELECT * FROM users WHERE user_password=? COLLATE NOCASE",(user_password,)).fetchall()

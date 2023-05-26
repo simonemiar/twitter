@@ -265,11 +265,11 @@
           <div class="flex">
             <div class="flex">
               <span class="flex items-center gap-2 font-bold">
-                {{tweet["tweet_id"]}} 
+                {{user["user_first_name"]}} {{user["user_last_name"]}} 
                 
               </span>
               <span class="ml-4">
-                <strong>@</strong>{{tweet["tweet_user_fk"]}}
+                <strong>@</strong>{{user["user_username"]}}
               </span>
             </div>
             <svg
@@ -434,8 +434,8 @@
         <div class="flex items-center gap-4 hover:bg-zinc-800">
           <img src="thumbnails/1.jpg" class="w-12 h-12 rounded-full" />
           <div class="">
-            <div class="text-base font-bold text-gray-200">fullname</div>
-            <div class="text-sm text-gray-400">@username</div>
+            <div class="text-base font-bold text-gray-200">Elon Musk</div>
+            <div class="text-sm text-gray-400">@elonmusk</div>
           </div>
           <button
             class="px-4 py-1 ml-auto text-base font-medium text-black bg-gray-200 rounded-full "

@@ -113,7 +113,6 @@ def render_index():
   response.add_header("Pragma", "no-cache")
   response.add_header("Expires", 0)
   user = request.get_cookie("user", secret="my-secret")
-  print("app", user)
   return template("index", title="Twitter", user=user, tweets=tweets, trends=trends, follows=follows, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
 
 
