@@ -13,6 +13,7 @@ import apis.api_sign_up
 import apis.api_follow
 import bridges.login
 import views.test
+import routes.render_verified
 
 
 ############# LOGIN AND LOGOUT #################

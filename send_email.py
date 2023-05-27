@@ -11,6 +11,7 @@ message["Subject"] = "multipart test"
 message["From"] = sender_email
 message["To"] = receiver_email
 
+
 # Create the plain-text and HTML version of your message
 text = """\
 Hi,
@@ -18,12 +19,12 @@ How are you?
 www.your_website_here.com"""
 html = """\
 <html>
-  <body>
+    <body>
     <p>Hi,<br>
-      Thank you for signing up?<br>
-      <a href="http://simonemiar.eu.pythonanywhere.com/">YOUR WEBSITE HERE</a>
+        Thank you for signing up?<br>
+        <a href="http://simonemiar.eu.pythonanywhere.com/">YOUR WEBSITE HERE</a>
     </p>
-  </body>
+    </body>
 </html>
 """
 

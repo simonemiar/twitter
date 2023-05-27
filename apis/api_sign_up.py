@@ -4,6 +4,7 @@ import uuid
 import time
 import traceback
 import bcrypt
+from send_verification_email import send_verification_email
 
 
 @post("/api-signup")
@@ -19,6 +20,7 @@ def _():
 
 
         user_id = str(uuid.uuid4()).replace("-","")
+        user_verification_key = str(uuid.uuid4()).replace("-","")
         user = {
             "user_id": str(uuid.uuid4().hex),
             "user_username": user_username,
@@ -34,7 +36,7 @@ def _():
             "user_avatar": "default_avatar.jpg", 
             "user_banner": str(uuid.uuid4().hex),
             "user_verified": 0,
-            "user_verification_key" : str(uuid.uuid4()).replace("-",""),
+            "user_verification_key" : user_verification_key
         }
         # create placed holders for values
         values = ""
@@ -47,11 +49,10 @@ def _():
         total_rows_inserted = db.execute(f"INSERT INTO users VALUES({values})", user).rowcount
         if total_rows_inserted != 1: raise Exception("Please, try again")
 
-        # db.execute("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (user_id, user_username, user_email, user_password, user_first_name, user_last_name, user_verified, user_created_at, user_total_followers, user_total_following, user_total_tweets, user_total_retweets, user_avatar, user_banner))
         db.commit() #without this, changes will not be saved in the database
         print("user created")
-        # send_email()
-        # user_email = request.forms.get("user_email")
+        send_verification_email(user_verification_key, user_email)
+
         return {"info" : "user created", "user_id":user_id}
     except Exception as e:
         print(e)
@@ -60,29 +61,3 @@ def _():
         if "db" in locals(): db.close()
         pass
 
-
-
-# @post("/api-sign-up")
-# def _():
-#     try:
-#         user_name = x.validate_user_name()
-#         user_id = 1
-#         user = {
-#             "user_id" : user_id,
-#             "user_name" : user_name 
-#         }
-#         values = ""
-#         for key in user:
-#             values = values + f":{key},"
-#         values = values.rstrip(",")
-#         print(values)
-
-#         db.execute(f"INSERT INTO users VALUES({values})", user)
-#         # db.execute("INSERT INTO users VALUES(?)", (user_name,))
-#         return "ok"
-#     except Exception as e:
-#         print(e)
-#         return {"info":str(e)}
-#     finally:
-#         # if "db" in locals(): db.close()
-#         pass

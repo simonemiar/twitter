@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-13T08:00:34.038Z",
-    "modified": "2023-05-26T19:11:25.450Z",
+    "modified": "2023-05-27T12:41:37.874Z",
     "headers": [],
     "params": [],
     "body": {
@@ -17,11 +17,11 @@
       "form": [
         {
           "name": "user_username",
-          "value": "monebob2"
+          "value": "3sambas3"
         },
         {
           "name": "user_email",
-          "value": "lol@lol.dk"
+          "value": "pawitib208@introace.com"
         },
         {
           "name": "user_password",

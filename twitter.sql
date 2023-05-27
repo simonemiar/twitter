@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users(
     user_id                TEXT NOT NULL UNIQUE,
     user_username          TEXT NOT NULL UNIQUE,
-    user_email             TEXT NOT NULL UNIQUE,
+    user_email             TEXT NOT NULL,
     user_password          TEXT NOT NULL,
     user_first_name        TEXT NOT NULL,
     user_last_name         TEXT DEFAULT "",

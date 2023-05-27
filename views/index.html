@@ -672,7 +672,6 @@
         <!-- end person -->
         % end
 
-     
         <a href="" class="text-sm text-sky-500"> Show more </a>
       </div>
       <!-- end who to follow  -->
@@ -694,6 +693,11 @@
           console.log(data)
           const message = frm.querySelector("input[name='tweet_message']").value
           console.log(message)
+          // if(something){
+            //     console.log("Cannot login")
+            //     alert()        
+            //     return
+          // }
           document.querySelector("#tweets").insertAdjacentHTML("afterbegin", 
           `<div class="tweet">
               <div>${data.tweet_id}</div>
