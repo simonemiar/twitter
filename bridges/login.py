@@ -1,31 +1,33 @@
 from bottle import post, response, request
 import time
 import x
-import traceback
 
 @post("/login")
 def _():
     try:
-        
         # x.validate_login()
         db = x.db()
-        # user_email = request.forms.get("email")
-        # user_password = request.forms.get("password")
 
-        user_email = "b@b.dk"
-        user_password = "123"
+        user_email = request.forms.get("email")
+        user_password = request.forms.get("password")
         user = db.execute("SELECT * FROM users WHERE user_email=? COLLATE NOCASE",(user_email,)).fetchall()
         password = db.execute("SELECT * FROM users WHERE user_password=? COLLATE NOCASE",(user_password,)).fetchall()
-        print(user)
+        logged_in_user = user[0]['user_verified']
+
+        print("bob")
+
         if not user:
             response.status = 400
             raise Exception("User not found")
         if not password:
             response.status = 400
             raise Exception("Password not found")
-            
+        if not logged_in_user == 1:
+            response.status = 400
+            raise Exception("Your user not verified, please check your email")
+
         response.set_cookie("user", user, secret="my-secret", httponly=True)
-        response.status = 303
+        response.status = 303 # is 303 wrong
 
         return response.set_header("Location", "/")
     except Exception as ex:

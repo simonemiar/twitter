@@ -18,14 +18,14 @@ def _():
         # x.validate_user_confirm_password() 
         salt = bcrypt.gensalt()
 
-
         user_id = str(uuid.uuid4()).replace("-","")
         user_verification_key = str(uuid.uuid4()).replace("-","")
         user = {
             "user_id": str(uuid.uuid4().hex),
             "user_username": user_username,
             "user_email": user_email,
-            "user_password": bcrypt.hashpw(user_password.encode("utf-8"), salt),
+            # "user_password": bcrypt.hashpw(user_password.encode("utf-8"), salt),
+            "user_password": 1234,
             "user_first_name": user_first_name,
             "user_last_name": user_last_name,
             "user_created_at": int(time.time()),

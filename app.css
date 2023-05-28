@@ -1051,6 +1051,18 @@ video {
   color: rgb(113 113 122 / var(--tw-text-opacity));
 }
 
+.underline {
+  text-decoration-line: underline;
+}
+
+.decoration-white {
+  text-decoration-color: #fff;
+}
+
+.decoration-blue-300 {
+  text-decoration-color: #93c5fd;
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;

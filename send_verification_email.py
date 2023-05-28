@@ -51,4 +51,4 @@ def send_verification_email(user_verification_key, user_email):
             )
 
 
-        return {"info" : "verified email sended"}
+        return 
