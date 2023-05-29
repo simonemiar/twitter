@@ -1,4 +1,4 @@
-
+PRAGMA foreign_keys=ON
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(
@@ -8,7 +8,7 @@ CREATE TABLE users(
     user_password          TEXT NOT NULL,
     user_first_name        TEXT NOT NULL,
     user_last_name         TEXT DEFAULT "",
-    user_created_at        TEXT NOT NULL,
+    user_created_at        INTEGER NOT NULL,
     user_total_followers   INTEGER TEXT DEFAULT 0,
     user_total_following   INTEGER TEXT DEFAULT 0,
     user_total_tweets      INTEGER TEXT DEFAULT 0,
@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS tweets;
 CREATE TABLE tweets(
     tweet_id              TEXT,
     tweet_user_fk         TEXT,
-    tweet_created_at      TEXT,
+    tweet_created_at      INTEGER,
     tweet_message         TEXT,
     tweet_image           TEXT,
     tweet_updated_at      TEXT,

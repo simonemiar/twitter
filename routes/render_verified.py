@@ -20,6 +20,23 @@ def _(user_verification_key):
         # else:
         #     return f"User {token} does not exist in the database."
 
+        # token = request.query.get('token')
+
+        # # Retrieve the user from the database using the token
+        # user = User.query.filter_by(verification_token=token).first()
+
+        # if user:
+        #     # Update the user's verification status
+        #     user.is_verified = True
+        #     db.session.commit()
+        #     return "Verification successful!"
+        # else:
+        #     return "Invalid or expired verification token."
+
+        # route handler retrieves the verification token from the URL
+        # It then queries the database to find the user associated with that token.
+        # If the user is found, their verification status is updated, and a success message is returned.
+        # Otherwise, an error message indicating an invalid or expired token is returned.
 
         return template('verified')
     except Exception as e:
