@@ -14,8 +14,6 @@ def _():
         password = db.execute("SELECT * FROM users WHERE user_password=? COLLATE NOCASE",(user_password,)).fetchall()
         logged_in_user = user[0]['user_verified']
 
-        print("bob")
-
         if not user:
             response.status = 400
             raise Exception("User not found")
@@ -28,6 +26,7 @@ def _():
 
         response.set_cookie("user", user, secret="my-secret", httponly=True)
         response.status = 303 # is 303 wrong
+        print("You are now logging in")
 
         return response.set_header("Location", "/")
     except Exception as ex:

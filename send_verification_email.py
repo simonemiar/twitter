@@ -7,7 +7,7 @@ def send_verification_email(user_verification_key, user_email):
         print(user_email)
 
         sender_email = "simonemiaa@gmail.com"
-        receiver_email = "pawitib208@introace.com"
+        receiver_email = "pepohaj557@rockdian.com"
         password = "zatovtlritcjgxfq"
 
         message = MIMEMultipart("alternative")

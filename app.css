@@ -1059,10 +1059,6 @@ video {
   text-decoration-color: #fff;
 }
 
-.decoration-blue-300 {
-  text-decoration-color: #93c5fd;
-}
-
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
