@@ -11,26 +11,17 @@ import traceback
 import apis.api_tweet
 import apis.api_sign_up
 import apis.api_follow
+import apis.api_forgot_password
+import apis.api_reset_password
+import routes.render_test
+
 import bridges.login
-import views.test
+
+import routes.render_login
+import routes.render_signup
 import routes.render_verified
-
-
-############# LOGIN AND LOGOUT #################
-@get("/login")
-def _():
-    return template("login")
-
-@get("/signup")
-def _():
-    return template("signup")
-
-@get("/logout")
-def _():
-    response.set_cookie("user", "", expires=0)
-    response.status = 303
-    response.set_header("Location", "/login")
-    return
+import routes.render_forgot_password
+import routes.render_reset_password
 
 ##############################
 

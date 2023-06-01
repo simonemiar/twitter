@@ -1,5 +1,4 @@
 from bottle import get, template, request
-import sqlite3
 import x
 
 @get ("/verified/<user_verification_key>")
@@ -11,7 +10,7 @@ def _(user_verification_key):
         token = user_verification_key
         db = x.db()
         # result = db.execute("SELECT * FROM users where user_verification_key=?", (token,)).fetchone()
-        result = db.execute("SELECT * FROM users where user_verification_key=?", (token,)).fetchone()
+        result = db.execute("SELECT * FROM users WHERE user_verification_key=?", (token,)).fetchone()
 
         print(result)
         print(result['user_verified'])

@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-13T08:00:34.038Z",
-    "modified": "2023-05-31T13:49:24.604Z",
+    "modified": "2023-06-01T21:32:10.256Z",
     "headers": [],
     "params": [],
     "body": {
@@ -17,11 +17,11 @@
       "form": [
         {
           "name": "user_username",
-          "value": "Musse"
+          "value": "Freja"
         },
         {
           "name": "user_email",
-          "value": "pepohaj557@rockdian.com"
+          "value": "pobiv67582@ratedane.com"
         },
         {
           "name": "user_password",
@@ -266,7 +266,7 @@
     "method": "POST",
     "sortNum": 110000,
     "created": "2023-05-28T15:29:08.708Z",
-    "modified": "2023-05-31T13:54:24.485Z",
+    "modified": "2023-06-01T10:25:33.337Z",
     "headers": [],
     "params": [],
     "body": {
@@ -275,11 +275,124 @@
       "form": [
         {
           "name": "email",
-          "value": "pariki6001@vaband.com"
+          "value": "kagoro4486@ratedane.com"
         },
         {
           "name": "password",
           "value": "1234"
+        }
+      ]
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "isjson",
+        "value": ""
+      },
+      {
+        "type": "Content-Type",
+        "custom": "",
+        "action": "contains",
+        "value": "application/json"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "contains",
+        "value": "info"
+      }
+    ]
+  },
+  {
+    "_id": "7ad34380-ba0e-48d7-8cdb-91aebded2b37",
+    "colId": "c99eead9-24a4-4c6d-92be-e2e370cb92ca",
+    "containerId": "",
+    "name": "forgot-password",
+    "url": "127.0.0.1:5000/api-forgot-password",
+    "method": "POST",
+    "sortNum": 130000,
+    "created": "2023-06-01T12:11:09.016Z",
+    "modified": "2023-06-01T21:36:30.962Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "user_email",
+          "value": "pobiv67582@ratedane.com"
+        }
+      ]
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "isjson",
+        "value": ""
+      },
+      {
+        "type": "Content-Type",
+        "custom": "",
+        "action": "contains",
+        "value": "application/json"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "contains",
+        "value": "info"
+      }
+    ]
+  },
+  {
+    "_id": "8c9586c8-5c97-48f4-b975-6e38b075bbf9",
+    "colId": "c99eead9-24a4-4c6d-92be-e2e370cb92ca",
+    "containerId": "",
+    "name": "reset-password",
+    "url": "127.0.0.1:5000/api-reset-password?user_password&user_confirm_password",
+    "method": "POST",
+    "sortNum": 140000,
+    "created": "2023-06-01T19:43:14.145Z",
+    "modified": "2023-06-01T23:43:10.254Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "user_password",
+        "value": "",
+        "isPath": false
+      },
+      {
+        "name": "user_confirm_password",
+        "value": "",
+        "isPath": false
+      }
+    ],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "new_password",
+          "value": "123"
+        },
+        {
+          "name": "confirm_new_password",
+          "value": "123"
         }
       ]
     },

@@ -93,7 +93,7 @@ def validate_last_name():
 
 
 ###########
-REGEX_EMAIL = '^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+REGEX_EMAIL = '^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$'
 
 def validate_email():
   print("*"*30)
@@ -118,9 +118,9 @@ def validate_password():
   print(request.forms.user_password)
   return request.forms.user_password
 
-# def validate_user_confirm_password():
-# 	error = f"user_password and user_confirm_password do not match"
-# 	request.forms.user_password = request.forms.user_password.strip()
-# 	request.forms.user_confirm_password = request.forms.user_confirm_password.strip()
-# 	if request.forms.user_confirm_password != request.forms.user_password: raise Exception(400, error)
-# 	return request.forms.user_confirm_password
+def validate_user_confirm_password():
+	error = f"user_password and user_confirm_password do not match"
+	request.forms.user_password = request.forms.user_password.strip()
+	request.forms.user_confirm_password = request.forms.user_confirm_password.strip()
+	if request.forms.user_confirm_password != request.forms.user_password: raise Exception(400, error)
+	return request.forms.user_confirm_password

@@ -7,7 +7,7 @@ def send_verification_email(user_verification_key, user_email):
         print(user_email)
 
         sender_email = "simonemiaa@gmail.com"
-        receiver_email = "pepohaj557@rockdian.com"
+        receiver_email = "pobiv67582@ratedane.com"
         password = "zatovtlritcjgxfq"
 
         message = MIMEMultipart("alternative")
@@ -25,7 +25,6 @@ def send_verification_email(user_verification_key, user_email):
             <body>
             <p>Hi,<br>
                 Thank you for signing up?<br>
-                <a href="http://127.0.0.1:5000/signup">YOUR WEBSITE HERE</a>
 
                 <a href="http://127.0.0.1:5000/verified/{user_verification_key}">YOUR WEBSITE HERE</a>
             </p>
@@ -49,6 +48,5 @@ def send_verification_email(user_verification_key, user_email):
             server.sendmail(
                 sender_email, receiver_email, message.as_string()
             )
-
 
         return 

@@ -15,7 +15,6 @@ def _():
         user_password = x.validate_password()
         user_first_name = x.validate_first_name()
         user_last_name = x.validate_last_name()
-        # x.validate_user_confirm_password() 
         salt = bcrypt.gensalt()
 
         user_id = str(uuid.uuid4()).replace("-","")
@@ -49,9 +48,10 @@ def _():
         total_rows_inserted = db.execute(f"INSERT INTO users VALUES({values})", user).rowcount
         if total_rows_inserted != 1: raise Exception("Please, try again")
 
-        db.commit() #without this, changes will not be saved in the database
         print("user created")
         send_verification_email(user_verification_key, user_email)
+        db.commit() #without this, changes will not be saved in the database
+
 
         return {"info" : "user created", "user_id":user_id}
     except Exception as e:
