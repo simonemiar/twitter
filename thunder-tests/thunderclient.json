@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-13T08:00:34.038Z",
-    "modified": "2023-06-01T21:32:10.256Z",
+    "modified": "2023-06-03T20:12:19.151Z",
     "headers": [],
     "params": [],
     "body": {
@@ -17,11 +17,11 @@
       "form": [
         {
           "name": "user_username",
-          "value": "Freja"
+          "value": "Saturday2"
         },
         {
           "name": "user_email",
-          "value": "pobiv67582@ratedane.com"
+          "value": "biwova2926@soremap.com"
         },
         {
           "name": "user_password",
@@ -319,7 +319,7 @@
     "method": "POST",
     "sortNum": 130000,
     "created": "2023-06-01T12:11:09.016Z",
-    "modified": "2023-06-01T21:36:30.962Z",
+    "modified": "2023-06-03T20:13:23.851Z",
     "headers": [],
     "params": [],
     "body": {
@@ -328,7 +328,7 @@
       "form": [
         {
           "name": "user_email",
-          "value": "pobiv67582@ratedane.com"
+          "value": "biwova2926@soremap.com"
         }
       ]
     },
@@ -368,7 +368,7 @@
     "method": "POST",
     "sortNum": 140000,
     "created": "2023-06-01T19:43:14.145Z",
-    "modified": "2023-06-01T23:43:10.254Z",
+    "modified": "2023-06-03T20:25:23.042Z",
     "headers": [],
     "params": [
       {
@@ -387,12 +387,16 @@
       "raw": "",
       "form": [
         {
-          "name": "new_password",
-          "value": "123"
+          "name": "token",
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2VtYWlsIjoiYml3b3ZhMjkyNkBzb3JlbWFwLmNvbSJ9.8f0mUlDE-SkpanlaoJFm5BQhphhLK5ixjon-JyP9hsQ"
         },
         {
-          "name": "confirm_new_password",
-          "value": "123"
+          "name": "user_password",
+          "value": "Johnny12344"
+        },
+        {
+          "name": "confirm_user_password",
+          "value": "Johnny12344"
         }
       ]
     },

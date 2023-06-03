@@ -7,7 +7,7 @@ def send_reset_password_email(user_email, token):
     print("email sended", user_email)
 
     sender_email = "simonemiaa@gmail.com"
-    receiver_email = "pobiv67582@ratedane.com"
+    receiver_email = "biwova2926@soremap.com"
     password = "zatovtlritcjgxfq"
 
     message = MIMEMultipart("alternative")

@@ -16,7 +16,8 @@ def _():
 
         # Generate JWT token
         token = jwt.encode({'user_email': user_email}, SECRET_KEY, algorithm='HS256')
-
+        # print(type(token))
+        
         if user:
             print("User found")
             send_reset_password_email(user_email, token)

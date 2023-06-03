@@ -112,15 +112,16 @@ def validate_password():
   print("*"*30)
   error = f"Password has to be between {USER_PASSWORD_MIN_LENGTH} to {USER_PASSWORD_MAX_LENGTH} numbers, at least one upper case English letter, one lower case English letter and one number"
   user_password = request.forms.get("user_password")
-  if len(request.forms.user_password) < USER_PASSWORD_MIN_LENGTH: raise Exception(error)
-  if len(request.forms.user_password) > USER_PASSWORD_MAX_LENGTH: raise Exception(error)
-  if not re.match(REGEX_PASSWORD, request.forms.user_password): raise Exception(error)  
+  if len(request.forms.user_password) < USER_PASSWORD_MIN_LENGTH: raise Exception(400, error)
+  if len(request.forms.user_password) > USER_PASSWORD_MAX_LENGTH: raise Exception(400, error)
+  if not re.match(REGEX_PASSWORD, request.forms.user_password): raise Exception(400, error)  
   print(request.forms.user_password)
   return request.forms.user_password
 
 def validate_user_confirm_password():
-	error = f"user_password and user_confirm_password do not match"
-	request.forms.user_password = request.forms.user_password.strip()
-	request.forms.user_confirm_password = request.forms.user_confirm_password.strip()
-	if request.forms.user_confirm_password != request.forms.user_password: raise Exception(400, error)
-	return request.forms.user_confirm_password
+  error = f"user_password and user_confirm_password do not match"
+  confirm_user_password = request.forms.get("confirm_user_password")
+  request.forms.user_password = request.forms.user_password.strip()
+  request.forms.user_confirm_password = request.forms.user_confirm_password.strip()
+  if request.forms.user_confirm_password != request.forms.user_password: raise Exception(400, error)
+  return request.forms.user_confirm_password
