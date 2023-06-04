@@ -128,7 +128,7 @@ def _(user_username):
     user_id = user["user_id"]
     print(f"user id:{user_id}")
     # With that id, look up/get the respectives tweets
-    tweets = db.execute("SELECT * FROM tweets WHERE tweet_user_fk=? LIMIT 10", (user_id,)).fetchall()
+    tweets = db.execute("SELECT * FROM tweets WHERE tweet_user_fk=? ORDER BY tweet_created_at DESC LIMIT 10", (user_id,)).fetchall()
     print(tweets)
     # pass the tweets to the view. Template it
     
