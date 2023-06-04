@@ -1,0 +1,305 @@
+<div class="py-3 text-base text-center border-t border-gray-700 text-sky-500">show 140 tweets</div>
+% for tweet in tweets:
+<!-- tweet -->
+<div class="flex gap-4 p-4 border-t border-gray-600">
+    <div class="">
+    <img
+        src="thumbnails/{{tweet['image_name']}}"
+        class="w-12 h-12 rounded-full"
+    />
+    </div>
+    <!-- right of tweet -->
+    <div class="w-full">
+    <div class="flex">
+        <div class="flex">
+        <span class="flex items-center gap-2 font-bold">
+            {{tweet["fullname"]}} 
+            %if tweet["verified"]:
+            <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            class="text-sky-500"
+            >
+            <path
+                fill="currentColor"
+                d="m8.6 22.5l-1.9-3.2l-3.6-.8l.35-3.7L1 12l2.45-2.8l-.35-3.7l3.6-.8l1.9-3.2L12 2.95l3.4-1.45l1.9 3.2l3.6.8l-.35 3.7L23 12l-2.45 2.8l.35 3.7l-3.6.8l-1.9 3.2l-3.4-1.45Zm2.35-6.95L16.6 9.9l-1.4-1.45l-4.25 4.25l-2.15-2.1L7.4 12Z"
+            />
+            </svg>
+            %end
+        </span>
+        <span class="ml-4">
+            <strong>@</strong>{{tweet["username"]}}
+        </span>
+        </div>
+        <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        class="ml-auto text-gray-500"
+        >
+        <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z"
+        />
+        </svg>
+    </div>
+    <div class="mt-4">
+        {{tweet["message"]}}
+        <!-- % if "message_image" in tweet: -->
+        %if tweet.get("message_image"):
+        <img
+        src="images/{{tweet['message_image']}}"
+        class="object-contain w-full mt-4 rounded-lg max-h-96"
+        />
+        %end
+    </div>
+    <div class="flex justify-between mt-2">
+        <div class="flex items-center gap-2 text-gray-500 hover:text-sky-500 group">
+        <svg width="30" height="30" viewBox="0 0 256 256" class="p-1 transition ease-in-out rounded-full group-hover:bg-zinc-800">
+            <path
+            fill="currentColor"
+            d="M128 232.4a15.9 15.9 0 0 1-13.7-7.7L99.5 200H40a16 16 0 0 1-16-16V56a16 16 0 0 1 16-16h176a16 16 0 0 1 16 16v128a16 16 0 0 1-16 16h-59.5l-6.8-4.1l6.8 4.1l-14.8 24.7a15.9 15.9 0 0 1-13.7 7.7ZM40 56v128h59.5a16.1 16.1 0 0 1 13.7 7.8l14.8 24.6l14.8-24.6a16.1 16.1 0 0 1 13.7-7.8H216V56Z"
+            />
+        </svg>
+        <span class="text-sm text-gray-500 group-hover:text-sky-500"> {{tweet["total_messages"]}} </span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-500 hover:text-green-500 group">
+        <svg
+            width="30"
+            height="30"
+            viewBox="0 0 21 21"
+            class="p-1 transition ease-in-out rounded-full group-hover:bg-zinc-800"
+        >
+            <g
+            fill="none"
+            fill-rule="evenodd"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            >
+            <path d="m13.5 13.5l3 3l3-3" />
+            <path d="M9.5 4.5h3a4 4 0 0 1 4 4v8m-9-9l-3-3l-3 3" />
+            <path d="M11.5 16.5h-3a4 4 0 0 1-4-4v-8" />
+            </g>
+        </svg>
+        <span class="text-sm text-gray-500 group-hover:text-green-500"> {{tweet["total_retweets"]}} </span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-500 hover:text-red-700 group">
+        <svg
+            width="30"
+            height="30"
+            viewBox="0 0 256 256"
+            class="p-1 transition ease-in-out rounded-full group-hover:bg-zinc-800"
+        >
+            <path
+            fill="currentColor"
+            d="M128 220.2a13.6 13.6 0 0 1-9.9-4.1L35 133a58 58 0 0 1 2.2-84.2a56.5 56.5 0 0 1 41.6-14a62.8 62.8 0 0 1 40.3 18.3L128 62l11-11a57.9 57.9 0 0 1 84.1 2.2a56.2 56.2 0 0 1 14.1 41.6a62.8 62.8 0 0 1-18.3 40.3l-81 81a13.6 13.6 0 0 1-9.9 4.1Zm5.6-8.3ZM75 46.7a44 44 0 0 0-29.7 11.1a45.8 45.8 0 0 0-1.8 66.7l83.1 83.1a1.9 1.9 0 0 0 2.8 0l81-81c18.2-18.2 19.9-47.5 3.8-65.3a45.8 45.8 0 0 0-66.7-1.8l-15.3 15.2a6.1 6.1 0 0 1-8.5 0l-13.1-13.1A50.3 50.3 0 0 0 75 46.7Z"
+            />
+        </svg>
+        <span class="text-sm text-gray-500 group-hover:text-red-700"> {{tweet["total_likes"]}} </span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-500 hover:text-sky-500 group">
+        <svg width="30" height="30" viewBox="0 0 512 512" class="p-1 transition ease-in-out rounded-full group-hover:bg-zinc-800">
+            <path
+            fill="currentColor"
+            d="M128 496H48V304h80Zm224 0h-80V208h80Zm112 0h-80V96h80Zm-224 0h-80V16h80Z"
+            />
+        </svg>
+        <span class="text-sm text-gray-500 group-hover:text-sky-500"> {{tweet["total_dislikes"]}} </span>
+        </div>
+        <div class="text-gray-500 hover:text-sky-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 20 20" class="p-1 transition ease-in-out rounded-full hover:bg-zinc-800"><path fill="currentColor" d="M9.25 13.25a.75.75 0 0 0 1.5 0V4.636l2.955 3.129a.75.75 0 0 0 1.09-1.03l-4.25-4.5a.75.75 0 0 0-1.09 0l-4.25 4.5a.75.75 0 1 0 1.09 1.03L9.25 4.636v8.614Z"/><path fill="currentColor" d="M3.5 12.75a.75.75 0 0 0-1.5 0v2.5A2.75 2.75 0 0 0 4.75 18h10.5A2.75 2.75 0 0 0 18 15.25v-2.5a.75.75 0 0 0-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5Z"/></svg>
+    </div>
+        
+    </div>
+    </div>
+    <!-- end right of tweet -->
+    </div>
+    <!-- end tweet -->
+    % end
+
+    <!-- tweet -->
+    <div class="flex gap-4 p-4 border-t border-gray-600">
+    <div class="">
+    <img src="thumbnails/2.jpg" class="w-12 h-12 rounded-full" />
+    </div>
+    <!-- right of tweet -->
+    <div class="w-full">
+    <div class="flex">
+        <div class="">
+        <span class="font-bold">Rihanna</span>
+        <span class="">@rihanna</span>
+        </div>
+        <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        class="ml-auto text-gray-500"
+        >
+        <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z"
+        />
+        </svg>
+    </div>
+    <div class="mt-4">
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text
+        ever since the 1500s, when an unknown printer took a galley of type
+        and scrambled it to make a type specimen book. It has survived not
+        only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s
+        with the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recently with desktop publishing software like Aldus
+        PageMaker including versions of Lorem Ipsum.
+    </div>
+    <img
+        src="images/5.jpg"
+        class="object-contain w-full mt-4 rounded-lg max-h-96"
+    />
+    </div>
+    <!-- end right of tweet -->
+    </div>
+    <!-- end tweet -->
+
+    <!-- tweet -->
+    <div class="flex gap-4 p-4 border-t border-gray-600">
+    <div class="">
+    <img src="thumbnails/3.jpg" class="w-12 h-12 rounded-full" />
+    </div>
+    <!-- right of tweet -->
+    <div class="w-full">
+    <div class="flex">
+        <div class="">
+        <span class="font-bold">Shakira</span>
+        <span class="">@shakira</span>
+        </div>
+        <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        class="ml-auto text-gray-500"
+        >
+        <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z"
+        />
+        </svg>
+    </div>
+    <div class="mt-4">
+        But also the leap into electronic.
+        <img
+        src="images/3.jpg"
+        class="object-contain w-full mt-4 rounded-lg max-h-96"
+        />
+    </div>
+    </div>
+    <!-- end right of tweet -->
+    </div>
+    <!-- end tweet -->
+
+    <!-- tweet -->
+    <div class="flex gap-4 p-4 border-t border-gray-600">
+    <div class="">
+    <img src="thumbnails/3.jpg" class="w-12 h-12 rounded-full" />
+    </div>
+    <!-- right of tweet -->
+    <div class="w-full">
+    <div class="flex">
+        <div class="">
+        <span class="font-bold">Shakira</span>
+        <span class="">@shakira</span>
+        </div>
+        <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        class="ml-auto text-gray-500"
+        >
+        <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z"
+        />
+        </svg>
+    </div>
+    <div class="mt-4">
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text
+        ever since the 1500s, when an unknown printer took a galley of type
+        and scrambled it to make a type specimen book. It has survived not
+        only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s
+        with the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recently with desktop publishing software like Aldus
+        PageMaker including versions of Lorem Ipsum.
+    </div>
+    </div>
+    <!-- end right of tweet -->
+    </div>
+    <!-- end tweet -->
+
+    <!-- tweet -->
+    <div class="flex gap-4 p-4 border-t border-gray-600">
+    <div class="">
+    <img src="thumbnails/3.jpg" class="w-12 h-12 rounded-full" />
+    </div>
+    <!-- right of tweet -->
+    <div class="w-full">
+    <div class="flex">
+        <div class="">
+        <span class="font-bold">Shakira</span>
+        <span class="">@shakira</span>
+        </div>
+        <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        class="ml-auto text-gray-500"
+        >
+        <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M6.75 12a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Zm6 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0Z"
+        />
+        </svg>
+    </div>
+    <div class="mt-4">
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text
+        ever since the 1500s, when an unknown printer took a galley of type
+        and scrambled it to make a type specimen book. It has survived not
+        only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s
+        with the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recently with desktop publishing software like Aldus
+        PageMaker including versions of Lorem Ipsum.
+    </div>
+    <img
+        src="images/4.jpeg"
+        class="object-contain w-full mt-4 rounded-lg max-h-96"
+    />
+    </div>
+    <!-- end right of tweet -->
+</div>
+<!-- end tweet -->
+</div>

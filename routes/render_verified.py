@@ -27,10 +27,12 @@ def _(user_verification_key):
             print("check", result)
 
         db.commit()
-        return template('verified')
+        return template('verified', title="Twitter")
     except Exception as e:
         print(e)
         return {"info":str(e)}
     finally:
         if "db" in locals(): db.close()
         pass
+
+

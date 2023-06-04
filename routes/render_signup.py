@@ -2,4 +2,4 @@ from bottle import get, template
 
 @get("/signup")
 def _():
-    return template("signup")
+    return template("signup", title="Twitter")

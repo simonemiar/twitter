@@ -7,16 +7,16 @@ import os
 import x
 import traceback
 
-
 import apis.api_tweet
 import apis.api_sign_up
 import apis.api_follow
 import apis.api_forgot_password
 import apis.api_reset_password
+import apis.api_login
+
+import bridges.logout
+
 import routes.render_test
-
-import bridges.login
-
 import routes.render_login
 import routes.render_signup
 import routes.render_verified
@@ -128,12 +128,12 @@ def _(user_username):
     user_id = user["user_id"]
     print(f"user id:{user_id}")
     # With that id, look up/get the respectives tweets
-    tweets = db.execute("SELECT * FROM tweets WHERE tweet_user_fk=?", (user_id,)).fetchall()
+    tweets = db.execute("SELECT * FROM tweets WHERE tweet_user_fk=? LIMIT 10", (user_id,)).fetchall()
     print(tweets)
     # pass the tweets to the view. Template it
     
     print(user) # {'id': '51602a9f7d82472b90ed1091248f6cb1', 'username': 'elonmusk', 'name': 'Elon', 'last_name': 'Musk', 'total_followers': '128900000', 'total_following': '177', 'total_tweets': '22700', 'avatar': '51602a9f7d82472b90ed1091248f6cb1.jpg'}
-    return template("profile", user=user, trends=trends, tweets=tweets)
+    return template("profile", title="Twitter", user=user, trends=trends, tweets=tweets, follows=follows)
   except Exception as ex:
     print(ex)
     return "error"
