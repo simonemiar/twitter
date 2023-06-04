@@ -59,7 +59,7 @@ trends = [
 
 follows =  [
   {"image_name":"1.jpg", "fullname": "Elon Musk", "username": "elonmusk"},
-  {"image_name":"2.jpg", "fullname": "Joe Biden", "username": "joebiden"},
+  {"image_name":"2.jpg", "fullname": "Rihanna", "username": "rihanna"},
   {"image_name":"3.jpg", "fullname": "Shakira", "username": "shakira"},
 ]
 

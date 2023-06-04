@@ -21,7 +21,7 @@
     <!-- end search -->
 
     <!-- trending -->
-    <div class="flex flex-col w-full gap-4 py-4 rounded-2xl bg-zinc-900">
+    <div class="flex flex-col w-full gap-4 pt-4 rounded-2xl bg-zinc-900">
         <div class="px-4 font-bold">Trends for you</div>
         % for trend in trends:
         <div class="px-4 py-2 hover:bg-zinc-800">
@@ -50,20 +50,24 @@
         </div>
         % end
 
-        <a href="" class="px-4 text-sm hover:bg-zinc-800 text-sky-500"> Show more </a>
+        <a href="" class="p-4 text-base rounded-b-2xl text-sky-500 hover:bg-zinc-800"> Show more </a>
     </div>
     <!-- end trending -->
 
     <!-- who to follow -->
     <div
-        class="sticky flex flex-col w-full gap-4 p-4 mt-4 rounded-2xl bg-zinc-900 top-20"
+        class="sticky flex-col hidden w-full gap-4 pt-4 mt-4 lg:flex rounded-2xl bg-zinc-900 top-20"
     >
-        <div class="font-bold text-white">Who to follow</div>
+        <div class="px-4">
+            <h2 class="text-xl font-bold text-gray-200">Who to follow</h2>
+        </div>
 
         % for follow in follows:
         <!-- person -->
-        <div class="flex items-center gap-4 hover:bg-zinc-800">
-        <img src="thumbnails/{{follow['image_name']}}" class="w-12 h-12 rounded-full" />
+        <a href="/{{follow['username']}}" class="flex items-center px-4 py-3 hover:bg-zinc-800">
+        <div class="mr-3">
+            <img src="thumbnails/{{follow['image_name']}}" class="w-12 h-12 rounded-full" />
+        </div>
         <div class="">
             <div class="text-base font-bold text-gray-200">{{follow["fullname"]}}</div>
             <div class="text-sm text-gray-400">@{{follow["username"]}}</div>
@@ -73,13 +77,14 @@
         >
             Follow
         </button>
-        </div>
+        </a>
         <!-- end person -->
         % end
 
-        <a href="" class="text-sm text-sky-500"> Show more </a>
+        <a href="" class="p-4 text-base rounded-b-2xl text-sky-500 hover:bg-zinc-800"> Show more </a>
     </div>
     <!-- end who to follow  -->
+    
     </div>
     <!-- end right -->
     <!-- script tags -->
