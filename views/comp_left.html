@@ -59,7 +59,7 @@ class="
     </a>
 
     <a
-    href="/explore"
+    href="/"
     class="flex items-center gap-3 px-4 py-2 rounded-full hover:bg-gray-800"
     >
     <svg width="32" height="32" viewBox="0 0 256 256">
@@ -72,7 +72,7 @@ class="
     </a>
     % if user:
     <a
-        href="/notifications"
+        href="/"
         class="relative flex gap-3 px-4 py-2 rounded-full hover:bg-gray-800"
         >
         <svg width="32" height="32" viewBox="0 0 256 256">
@@ -90,7 +90,7 @@ class="
         </a>
     
         <a
-        href="/messages"
+        href="/"
         class="flex items-center gap-3 px-4 py-2 rounded-full hover:bg-gray-800"
         >
         <svg width="32" height="32" viewBox="0 0 24 24">
@@ -103,7 +103,7 @@ class="
         </a>
 
         <a
-        href="/messages"
+        href="/"
         class="flex items-center gap-3 px-4 py-2 rounded-full hover:bg-gray-800"
         >
         <svg width="32" height="32" viewBox="0 0 256 256">
@@ -116,7 +116,7 @@ class="
         </a>
 
         <a
-        href="/messages"
+        href="/{{user['user_username']}}"
         class="flex items-center gap-3 px-4 py-2 rounded-full hover:bg-gray-800"
         >
         <svg width="32" height="32" viewBox="0 0 256 256">
@@ -145,10 +145,10 @@ class="
     <a class="flex items-center w-full gap-4 px-2 py-1 rounded-full cursor-pointer hover:bg-zinc-900">
         
     
-        <img src="thumbnails/1.jpg" class="w-12 h-12 rounded-full" />
+        <img src="/images/avatar/{{user['user_avatar']}}" class="w-12 h-12 rounded-full" />
         <div class="">
-            <div class="text-sm font-bold">Elon Musk</div>
-            <div class="text-sm text-gray-400">@elonmusk</div>
+            <div class="text-sm font-bold">{{user["user_first_name"]}} {{user["user_last_name"]}}</div>
+            <div class="text-sm text-gray-400">@{{user["user_username"]}}</div>
         </div>
         <svg
             width="38"

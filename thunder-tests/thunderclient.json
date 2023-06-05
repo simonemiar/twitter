@@ -266,7 +266,7 @@
     "method": "POST",
     "sortNum": 110000,
     "created": "2023-05-28T15:29:08.708Z",
-    "modified": "2023-06-04T13:10:44.145Z",
+    "modified": "2023-06-05T11:36:00.723Z",
     "headers": [],
     "params": [],
     "body": {
@@ -274,11 +274,11 @@
       "raw": "",
       "form": [
         {
-          "name": "email",
+          "name": "user_email",
           "value": "s@s.dk"
         },
         {
-          "name": "password",
+          "name": "user_password",
           "value": "123"
         }
       ]

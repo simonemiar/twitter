@@ -1,30 +1,49 @@
 from bottle import post, response, request
 import time
 import x
+import bcrypt
+
 
 @post("/login")
 def _():
     try:
         # x.validate_login()
         db = x.db()
+        salt = bcrypt.gensalt()
 
-        user_email = request.forms.get("email")
-        user_password = request.forms.get("password")
+        user_email = request.forms.get("user_email")
+        form_password = request.forms.get("user_password")
+        print("check password", form_password)        
+
         user = db.execute("SELECT * FROM users WHERE user_email=? COLLATE NOCASE",(user_email,)).fetchall()
-        password = db.execute("SELECT * FROM users WHERE user_password=? COLLATE NOCASE",(user_password,)).fetchall()
+        user_password = user[0]['user_password']
+        print(user_password)
+
+        if not user_password == "123":
+            #unhash password 
+            # bcrypt.hashpw(user_password.encode("utf-8"), salt)
+            # hashed_password = bcrypt.hashpw(form.password.data.encode('utf-8'), salt).decode('utf-8')
+            # While checking:
+            print("hashing") 
+            user_password = bcrypt.hashpw(form_password.encode('utf8'), user_password).decode('utf-8')
+        else: 
+            print("not hashed")
+            user_password = form_password
+
+        # password = db.execute("SELECT * FROM users WHERE user_password=? COLLATE NOCASE",(user_password,)).fetchall()
         logged_in_user = user[0]['user_email']
         update_verified_user = user[0]['user_verified']
 
         if not user:
             response.status = 400
             raise Exception("User not found")
-        if not password:
+        if not user_password:
             response.status = 400
             raise Exception("Password not found")
         if not update_verified_user == 1:
             response.status = 400
             raise Exception("Your user not verified, please check your email")
-
+        print("test")
         response.set_cookie("user", user, secret="my-secret", httponly=True)
         response.status = 303 # is 303 wrong
         print("You are now logging in")

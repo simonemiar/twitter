@@ -104,7 +104,9 @@ def render_index():
   response.add_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
   response.add_header("Pragma", "no-cache")
   response.add_header("Expires", 0)
-  user = request.get_cookie("user", secret="my-secret")
+  get_user = request.get_cookie("user", secret="my-secret")
+  user = get_user[0]
+  print(user)
   return template("index", title="Twitter", user=user, tweets=tweets, trends=trends, follows=follows, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
 
 
@@ -121,19 +123,23 @@ def dict_factory(cursor, row):
 # @view("profile")
 def _(user_username):
   try:
+    # get logged in user
+    get_user = request.get_cookie("user", secret="my-secret")
+    user = get_user[0]
+
     db = sqlite3.connect(os.getcwd()+"/twitter.db")
     db.row_factory = dict_factory
-    user = db.execute("SELECT * FROM users WHERE user_username=? COLLATE NOCASE",(user_username,)).fetchall()[0]
+    user_profile = db.execute("SELECT * FROM users WHERE user_username=? COLLATE NOCASE",(user_username,)).fetchall()[0]
     # Get the user's id
-    user_id = user["user_id"]
+    user_id = user_profile["user_id"]
     print(f"user id:{user_id}")
     # With that id, look up/get the respectives tweets
     tweets = db.execute("SELECT * FROM tweets WHERE tweet_user_fk=? ORDER BY tweet_created_at DESC LIMIT 10", (user_id,)).fetchall()
     print(tweets)
     # pass the tweets to the view. Template it
     
-    print(user) # {'id': '51602a9f7d82472b90ed1091248f6cb1', 'username': 'elonmusk', 'name': 'Elon', 'last_name': 'Musk', 'total_followers': '128900000', 'total_following': '177', 'total_tweets': '22700', 'avatar': '51602a9f7d82472b90ed1091248f6cb1.jpg'}
-    return template("profile", title="Twitter", user=user, trends=trends, tweets=tweets, follows=follows)
+    print("visited user profile", user_profile) # {'id': '51602a9f7d82472b90ed1091248f6cb1', 'username': 'elonmusk', 'name': 'Elon', 'last_name': 'Musk', 'total_followers': '128900000', 'total_following': '177', 'total_tweets': '22700', 'avatar': '51602a9f7d82472b90ed1091248f6cb1.jpg'}
+    return template("profile", title="Twitter", user_profile=user_profile, user=user, trends=trends, tweets=tweets, follows=follows)
   except Exception as ex:
     print(ex)
     return "error"

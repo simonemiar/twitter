@@ -33,7 +33,7 @@ def _():
             "user_total_tweets": 0,
             "user_total_retweets": 0,
             "user_avatar": "default_avatar.jpg", 
-            "user_banner": str(uuid.uuid4().hex),
+            "user_banner": "default_banner.jpg",
             "user_verified": 0,
             "user_verification_key" : user_verification_key,
             "user_logged_in" : 0
