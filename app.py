@@ -105,8 +105,10 @@ def render_index():
   response.add_header("Pragma", "no-cache")
   response.add_header("Expires", 0)
   get_user = request.get_cookie("user", secret="my-secret")
-  user = get_user[0]
-  print(user)
+  if get_user:
+      user = get_user[0]
+  else:
+    user = None
   return template("index", title="Twitter", user=user, tweets=tweets, trends=trends, follows=follows, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
 
 
@@ -125,7 +127,10 @@ def _(user_username):
   try:
     # get logged in user
     get_user = request.get_cookie("user", secret="my-secret")
-    user = get_user[0]
+    if get_user:
+      user = get_user[0]
+    else:
+      user = None
 
     db = sqlite3.connect(os.getcwd()+"/twitter.db")
     db.row_factory = dict_factory

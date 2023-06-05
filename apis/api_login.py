@@ -13,24 +13,16 @@ def _():
 
         user_email = request.forms.get("user_email")
         form_password = request.forms.get("user_password")
-        print("check password", form_password)        
 
         user = db.execute("SELECT * FROM users WHERE user_email=? COLLATE NOCASE",(user_email,)).fetchall()
         user_password = user[0]['user_password']
-        print(user_password)
 
         if not user_password == "123":
-            #unhash password 
-            # bcrypt.hashpw(user_password.encode("utf-8"), salt)
-            # hashed_password = bcrypt.hashpw(form.password.data.encode('utf-8'), salt).decode('utf-8')
-            # While checking:
-            print("hashing") 
+            #decode hashed password 
             user_password = bcrypt.hashpw(form_password.encode('utf8'), user_password).decode('utf-8')
         else: 
-            print("not hashed")
             user_password = form_password
 
-        # password = db.execute("SELECT * FROM users WHERE user_password=? COLLATE NOCASE",(user_password,)).fetchall()
         logged_in_user = user[0]['user_email']
         update_verified_user = user[0]['user_verified']
 
