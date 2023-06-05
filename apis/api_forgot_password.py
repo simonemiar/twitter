@@ -1,6 +1,7 @@
 from bottle import post, request
 import x
 import jwt
+import traceback
 from send_reset_password_email import send_reset_password_email
 
 # Secret key for JWT token signing
@@ -29,6 +30,7 @@ def _():
         return {"info": "email have been sent"}
     except Exception as e:
         print(e)
+        traceback.print_exc()
         return {"info":str(e)}
     finally:
         if "db" in locals(): db.close()

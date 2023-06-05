@@ -134,7 +134,7 @@ def _(user_username):
 
     db = sqlite3.connect(os.getcwd()+"/twitter.db")
     db.row_factory = dict_factory
-    user_profile = db.execute("SELECT * FROM users WHERE user_username=? COLLATE NOCASE",(user_username,)).fetchall()[0]
+    user_profile = db.execute("SELECT * FROM users WHERE user_username=? COLLATE NOCASE",(user_username,)).fetchall()
     # Get the user's id
     user_id = user_profile["user_id"]
     print(f"user id:{user_id}")
@@ -147,6 +147,7 @@ def _(user_username):
     return template("profile", title="Twitter", user_profile=user_profile, user=user, trends=trends, tweets=tweets, follows=follows)
   except Exception as ex:
     print(ex)
+    traceback.print_exc()
     return "error"
   finally:
     if "db" in locals(): db.close()

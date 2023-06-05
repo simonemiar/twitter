@@ -2,6 +2,7 @@ from bottle import post, response, request
 import time
 import x
 import bcrypt
+import traceback
 
 
 @post("/login")
@@ -52,6 +53,7 @@ def _():
         return response.set_header("Location", "/")
     except Exception as ex:
         print(ex)
+        traceback.print_exc()
         response.status = 303
         return response.set_header(f"Location", "/login?error={ex}")
     finally: # This will always take place

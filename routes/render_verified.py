@@ -1,5 +1,6 @@
 from bottle import get, template, request
 import x
+import traceback
 
 @get ("/verified/<user_verification_key>")
 def _(user_verification_key):
@@ -30,6 +31,7 @@ def _(user_verification_key):
         return template('verified', title="Twitter")
     except Exception as e:
         print(e)
+        traceback.print_exc()
         return {"info":str(e)}
     finally:
         if "db" in locals(): db.close()
