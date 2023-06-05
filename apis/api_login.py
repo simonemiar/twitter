@@ -6,32 +6,36 @@ import bcrypt
 
 @post("/login")
 def _():
-    try:
-        # x.validate_login()
+    try:   
+        # x.validate_password()
         db = x.db()
         salt = bcrypt.gensalt()
 
         user_email = request.forms.get("user_email")
         form_password = request.forms.get("user_password")
+        print(form_password)
 
         user = db.execute("SELECT * FROM users WHERE user_email=? COLLATE NOCASE",(user_email,)).fetchall()
         user_password = user[0]['user_password']
+        print(user_password)
 
         if not user_password == "123":
-            #decode hashed password 
-            user_password = bcrypt.hashpw(form_password.encode('utf8'), user_password).decode('utf-8')
-        else: 
-            user_password = form_password
-
+            # decode hashed password 
+            user_password = bcrypt.checkpw(form_password.encode('utf8'), user_password)
+            print(user_password)
+            
         logged_in_user = user[0]['user_email']
         update_verified_user = user[0]['user_verified']
 
         if not user:
             response.status = 400
             raise Exception("User not found")
-        if not user_password:
+        if not user_password == True:
             response.status = 400
             raise Exception("Password not found")
+        # if not form_password == user_password:
+        #     response.status = 400
+        #     raise Exception("Password not found")
         if not update_verified_user == 1:
             response.status = 400
             raise Exception("Your user not verified, please check your email")
