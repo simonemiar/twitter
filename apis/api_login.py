@@ -54,6 +54,7 @@ def _():
     except Exception as ex:
         print(ex)
         traceback.print_exc()
+        if 'db' in locals(): db.rollback()
         response.status = 303
         return response.set_header(f"Location", "/login?error={ex}")
     finally: # This will always take place

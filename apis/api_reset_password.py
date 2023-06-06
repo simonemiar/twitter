@@ -4,7 +4,7 @@ import jwt
 import bcrypt
 
 # Secret key for JWT token signing
-SECRET_KEY = "5e28e54695db4d92980be20ea198c6a0"
+SECRET_KEY_RESET = "5e28e54695db4d92980be20ea198c6a0"
 
 @post("/api-reset-password")
 def _():
@@ -12,7 +12,7 @@ def _():
         print("reset post")
         # jwt token decoded from hidden input field
         token = request.forms.get("token")
-        decoded_token = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        decoded_token = jwt.decode(token, SECRET_KEY_RESET, algorithms=['HS256'])
         user_email = decoded_token['user_email']
         print("token", user_email)
 
@@ -40,6 +40,7 @@ def _():
         return {"info": "password reset"}
     except Exception as e:
         print(e)
+        if 'db' in locals(): db.rollback()
         return {"info":str(e)}
     finally:
         if "db" in locals(): db.close()

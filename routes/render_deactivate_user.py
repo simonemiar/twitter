@@ -2,14 +2,14 @@ from bottle import get, template, response
 import jwt
 import x
 
-SECRET_KEY_RESET = "5e28e54695db4d92980be20ea198c6a0"
+SECRET_KEY_DELETE = "c5d633499c044dab99e2b7f66c970ecf"
 
-@get ("/reset-password/<token>")
-def _(token):
+@get("/deactivate-user/<delete_token>")
+def _(delete_token):
     try:
         # Decoding the token and storing the secret
-        print("check 1", token)
-        decoded_token = jwt.decode(token, SECRET_KEY_RESET, algorithms=['HS256'])
+        print("check 1", delete_token)
+        decoded_token = jwt.decode(delete_token, SECRET_KEY_DELETE, algorithms=['HS256'])
         user_email = decoded_token['user_email']
         print(user_email)
 
@@ -24,22 +24,13 @@ def _(token):
             print("use dont exists")
             response.status = 400
             raise Exception("User not found")
+            # create popup error
 
-        return template('reset_password', token=token, user_email=user_email)
+        return template('deactivate_user', delete_token=delete_token, user_email=user_email)
     except Exception as e:
         print(e)
         if 'db' in locals(): db.rollback()
-        response.status = 303
-        response.set_header("Location", "/login")
         return {"info":str(e)}
     finally:
         if "db" in locals(): db.close()
         pass
-
-
-# redirect to login page if user tries to go to login page
-@get ("/reset-password")
-def _():
-    response.status = 303
-    response.set_header("Location", "/login")
-    return

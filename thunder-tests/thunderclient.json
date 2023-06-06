@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-13T08:00:34.038Z",
-    "modified": "2023-06-05T13:48:40.236Z",
+    "modified": "2023-06-06T12:37:08.992Z",
     "headers": [],
     "params": [],
     "body": {
@@ -17,7 +17,7 @@
       "form": [
         {
           "name": "user_username",
-          "value": "Bobbylan"
+          "value": "bob1234"
         },
         {
           "name": "user_email",
@@ -397,6 +397,94 @@
         {
           "name": "confirm_user_password",
           "value": "Johnny12344"
+        }
+      ]
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "isjson",
+        "value": ""
+      },
+      {
+        "type": "Content-Type",
+        "custom": "",
+        "action": "contains",
+        "value": "application/json"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "contains",
+        "value": "info"
+      }
+    ]
+  },
+  {
+    "_id": "ad2c2fb9-2261-451f-a1aa-da01b167c0fb",
+    "colId": "c99eead9-24a4-4c6d-92be-e2e370cb92ca",
+    "containerId": "",
+    "name": "deactivate-user-email",
+    "url": "127.0.0.1:5000/api-deactivate-user-email",
+    "method": "POST",
+    "sortNum": 150000,
+    "created": "2023-06-06T10:16:22.064Z",
+    "modified": "2023-06-06T12:31:23.712Z",
+    "headers": [],
+    "params": [],
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "isjson",
+        "value": ""
+      },
+      {
+        "type": "Content-Type",
+        "custom": "",
+        "action": "contains",
+        "value": "application/json"
+      },
+      {
+        "type": "res-body",
+        "custom": "",
+        "action": "contains",
+        "value": "info"
+      }
+    ]
+  },
+  {
+    "_id": "9a0e0fdd-40fe-460f-8cff-61be73fe28dc",
+    "colId": "c99eead9-24a4-4c6d-92be-e2e370cb92ca",
+    "containerId": "",
+    "name": "deactivate-user",
+    "url": "127.0.0.1:5000/api-deactivate-user",
+    "method": "POST",
+    "sortNum": 160000,
+    "created": "2023-06-06T12:32:13.497Z",
+    "modified": "2023-06-06T14:55:53.290Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "delete_token",
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2VtYWlsIjoiYml3b3ZhMjkyNkBzb3JlbWFwLmNvbSJ9.jGV2Rr0Jg80qWqAH2rJhuOjKSvYvb7bg0qaOIwFOb8U"
         }
       ]
     },

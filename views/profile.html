@@ -1,23 +1,39 @@
 %include("comp_left")
 
 
-    <!-- tweet modal -->
-    <section id="settings_modal"
-    class="fixed top-0 left-0 z-40 hidden w-screen h-screen">
+    <!-- settings modal -->
+    <section id="settings_modal" class="fixed top-0 left-0 z-10 w-screen h-screen ">
       <div onclick="document.querySelector('#settings_modal').style.display='none'"
       class="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
-      <form 
-      class="absolute flex flex-col w-full gap-4 px-16 mx-auto mt-24 lg:px-96 z-100">
-        <input name="tweet_message" id="" data-validate="str" data-min="2" data-max="20" placeholder="What is in your mind?"
-        class="w-full p-4 text-black bg-white rounded-lg outline-none"
-        ></input>
-        <button type="button" data-default="Tweet" data-await="Please wait ..."
-        class="px-8 py-2 ml-auto font-semibold text-white rounded-lg bg-sky-500">
-          Tweet
-        </button>
-      </form>
+      <div class="absolute px-10 py-10 mt-24 bg-black border border-gray-200 rounded-lg left-1/4 lg:left-1/3 lg:px-40 z-100">
+        <div class="grid items-center justify-center">
+          <img class="w-40 rounded-full" src="/images/avatar/{{user_profile['user_avatar']}}" alt="">
+        </div>
+        <form class="">
+          <div class="grid m-2">
+            <label for="">Username</label>
+            <input type="text" class="p-2 text-white bg-black rounded-sm outline outline-1 outline-zinc-500" readonly placeholder="{{user_profile['user_username']}}">
+          </div>
+          <div class="grid m-2">
+            <label for="">Firstname</label>
+            <input type="text" class="p-2 text-white bg-black rounded-sm outline outline-1 outline-zinc-500" readonly placeholder="{{user_profile['user_first_name']}}">
+          </div>
+          <div class="grid m-2">
+            <label for="">Lastname</label>
+            <input type="text" class="p-2 text-white bg-black rounded-sm outline outline-1 outline-zinc-500" readonly placeholder="{{user_profile['user_last_name']}}">
+          </div>
+          <div class="grid gap-4">
+            <button class="w-full px-8 py-2 ml-auto font-semibold text-black bg-gray-200 rounded-full">update user</button>
+          </div>
+        </form>
+        <form class="mt-2" method="POST" onsubmit="deactivateUser(); return false">
+        <button type="submit" class="w-full px-8 py-2 ml-auto font-semibold text-white bg-red-800 rounded-full">deactivate user</button>
+        </form>
+
+      </div>
+      
     </section>
-    <!-- end tweet modal -->
+    <!-- end settings modal -->
     
     <!-- center -->
     <div class="h-full min-h-screen border-zinc-800 border-x">
@@ -68,15 +84,19 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="ml-auto "><path fill="currentColor" d="M12 2c-1.1 0-2 .9-2 2v.29C7.12 5.14 5 7.82 5 11v6l-2 2v1h9.35a5.93 5.93 0 0 1-.35-2H7v-7c0-2.76 2.24-5 5-5s5 2.24 5 5v1.09a5.634 5.634 0 0 1 2 0V11c0-3.18-2.12-5.86-5-6.71V4a2 2 0 0 0-2-2m5 12v3h-3v2h3v3h2v-3h3v-2h-3v-3m-9 7a2 2 0 0 0 3.65 1.13c-.32-.34-.6-.72-.84-1.13Z"/></svg>
               </div>
               </div>
-                <a onclick="document.querySelector('#settings_modal').style.display='flex'" class="border border-gray-600 rounded-full min-w-[120px] flex justify-center cursor-pointer">
-                  <div class="flex items-center">
-                  % if user == user_profile:
+              % if user == user_profile:
+              <a onclick="document.querySelector('#settings_modal').style.display='flex'" class="border border-gray-600 rounded-full min-w-[120px] flex justify-center cursor-pointer">
+                <div class="flex items-center">
                   <p class="text-sm font-bold">Set up profile</p>
-                  % else:
-                  <p class="text-sm font-bold">Follow</p>
-                  % end
                 </div>
-                </a>
+              </a>
+              % else:
+              <a class="border border-gray-600 rounded-full min-w-[120px] flex justify-center cursor-pointer">
+                <div class="flex items-center">
+                  <p class="text-sm font-bold">Follow</p>
+                </div>
+              </a>
+              % end
 
             </div>
           </div>
@@ -233,9 +253,20 @@
       % end
       <a class="block py-3 text-base text-center border-t border-gray-700 text-sky-500">show more tweets</a>
     </div>
-
-
     </div>
     <!-- end center -->
+
+    <script>
+      async function deactivateUser(){
+        const frm = event.target 
+        console.log(new FormData(frm))
+        const conn = await fetch("/api-deactivate-user-email", {
+            method: "POST",
+            body: new FormData(frm)
+        })
+        const data = await conn.json()
+        console.log("Email to deactivate user have been sent", data)
+      }
+    </script>
 
 %include("comp_right")

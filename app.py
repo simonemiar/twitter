@@ -13,6 +13,8 @@ import apis.api_follow
 import apis.api_forgot_password
 import apis.api_reset_password
 import apis.api_login
+import apis.api_deactivate_user_email
+import apis.api_deactivate_user
 
 import bridges.logout
 
@@ -22,6 +24,7 @@ import routes.render_signup
 import routes.render_verified
 import routes.render_forgot_password
 import routes.render_reset_password
+import routes.render_deactivate_user
 
 ##############################
 
@@ -134,9 +137,10 @@ def _(user_username):
 
     db = sqlite3.connect(os.getcwd()+"/twitter.db")
     db.row_factory = dict_factory
-    user_profile = db.execute("SELECT * FROM users WHERE user_username=? COLLATE NOCASE",(user_username,)).fetchall()
+    user_profile = db.execute("SELECT * FROM users WHERE user_username=? COLLATE NOCASE",(user_username,)).fetchone()
+    print("profile", user_profile)
     # Get the user's id
-    user_id = user_profile["user_id"]
+    user_id = user_profile['user_id']
     print(f"user id:{user_id}")
     # With that id, look up/get the respectives tweets
     tweets = db.execute("SELECT * FROM tweets WHERE tweet_user_fk=? ORDER BY tweet_created_at DESC LIMIT 10", (user_id,)).fetchall()

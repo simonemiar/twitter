@@ -23,6 +23,7 @@ def _():
     db.commit() #without this, changes will not be saved in the database
     return {"info":"ok", "tweet_id":tweet_id}
   except Exception as ex: # SOMETHING IS WRONG
+    if 'db' in locals(): db.rollback()
     response.status = 400
     return {"info" :str(ex)}
   finally: # This will always take place

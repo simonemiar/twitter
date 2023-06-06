@@ -5,7 +5,7 @@ import traceback
 from send_reset_password_email import send_reset_password_email
 
 # Secret key for JWT token signing
-SECRET_KEY = "5e28e54695db4d92980be20ea198c6a0"
+SECRET_KEY_RESET = "5e28e54695db4d92980be20ea198c6a0"
 
 @post("/api-forgot-password")
 def _():
@@ -16,7 +16,7 @@ def _():
         # reset_key = str(uuid.uuid4().hex)
 
         # Generate JWT token
-        token = jwt.encode({'user_email': user_email}, SECRET_KEY, algorithm='HS256')
+        token = jwt.encode({'user_email': user_email}, SECRET_KEY_RESET, algorithm='HS256')
         # print(type(token))
         
         if user:
@@ -31,6 +31,7 @@ def _():
     except Exception as e:
         print(e)
         traceback.print_exc()
+        if 'db' in locals(): db.rollback()
         return {"info":str(e)}
     finally:
         if "db" in locals(): db.close()

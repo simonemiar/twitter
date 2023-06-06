@@ -57,6 +57,7 @@ def _():
         return {"info" : "user created", "user_id":user_id}
     except Exception as e:
         print(e)
+        if 'db' in locals(): db.rollback()
         traceback.print_exc()
         return {"info":str(e)}
     finally:
