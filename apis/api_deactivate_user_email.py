@@ -1,7 +1,7 @@
 from bottle import post, request
 import jwt
 import uuid
-from send_deactivate_user_email import send_deactivate_user_email
+from emails.send_deactivate_user_email import send_deactivate_user_email
 
 SECRET_KEY_DELETE = "c5d633499c044dab99e2b7f66c970ecf"
 

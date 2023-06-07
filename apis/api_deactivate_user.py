@@ -18,7 +18,7 @@ def _():
         db.execute("DELETE FROM users WHERE user_email=?", (user_email,)).fetchone()
         db.commit() #without this, changes will not be saved in the database
 
-        return {'info':'ok'}
+        return response.set_header("Location", "/logout")
     except Exception as ex:
         if 'db' in locals(): db.rollback()
         print(ex)

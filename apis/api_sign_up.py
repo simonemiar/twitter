@@ -1,10 +1,12 @@
 from bottle import post, request, response
 import x
+import os
+import shutil
 import uuid
 import time
 import traceback
 import bcrypt
-from send_verification_email import send_verification_email
+from emails.send_verification_email import send_verification_email
 
 
 @post("/api-signup")
@@ -19,6 +21,24 @@ def _():
 
         user_id = str(uuid.uuid4()).replace("-","")
         user_verification_key = str(uuid.uuid4()).replace("-","")
+
+        # get default avatar
+        default_avatar_path = "images/avatar/default_avatar.jpg"
+        # Generate a unique filename for the user's avatar
+        avatar_uuid = str(uuid.uuid4().hex)
+        print(avatar_uuid)
+        avatar_extension = os.path.splitext(default_avatar_path)[1]
+        print(avatar_extension)
+        avatar_filename = avatar_uuid + avatar_extension
+        print(avatar_filename)
+        # default_avatar_path.save(f"images/avatar/{avatar_filename}")
+        # Create the new avatar path
+        new_avatar_path = os.path.join('images/avatar', avatar_filename)
+
+        # Copy the default avatar to the new path
+        shutil.copy(default_avatar_path, new_avatar_path)
+        # permanent_location = f"images/avatar/{avatar_filename}"
+
         user = {
             "user_id": str(uuid.uuid4().hex),
             "user_username": user_username,
@@ -32,7 +52,7 @@ def _():
             "user_total_following": 0,
             "user_total_tweets": 0,
             "user_total_retweets": 0,
-            "user_avatar": "default_avatar.jpg", 
+            "user_avatar": avatar_filename, 
             "user_banner": "default_banner.jpg",
             "user_verified": 0,
             "user_verification_key" : user_verification_key,

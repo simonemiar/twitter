@@ -103,6 +103,29 @@
         const message = frm.querySelector("input[name='tweet_message']").value
         console.log(message)
         }
+        async function deactivateUser(){
+            const frm = event.target 
+            console.log(new FormData(frm))
+            const conn = await fetch("/api-deactivate-user-email", {
+                method: "POST",
+                body: new FormData(frm)
+            })
+            const data = await conn.json()
+            console.log("Email to deactivate user have been sent", data)
+        }
+
+        async function uploadAvatar(){
+            const frm = event.target 
+            console.log(new FormData(frm))
+            const conn = await fetch("/api-upload-avatar", {
+                method: "POST",
+                body: new FormData(frm)
+            })
+            const data = await conn.json()
+            console.log("Uploading the image", data)
+            const profile_image = frm.querySelector("input[name='profile_image']").value
+            console.log(profile_image)
+        }
     </script>
 </body>
 </html>  

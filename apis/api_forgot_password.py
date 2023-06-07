@@ -2,7 +2,7 @@ from bottle import post, request
 import x
 import jwt
 import traceback
-from send_reset_password_email import send_reset_password_email
+from emails.send_reset_password_email import send_reset_password_email
 
 # Secret key for JWT token signing
 SECRET_KEY_RESET = "5e28e54695db4d92980be20ea198c6a0"

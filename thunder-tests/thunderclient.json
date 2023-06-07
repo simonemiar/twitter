@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2023-03-13T08:00:34.038Z",
-    "modified": "2023-06-06T12:37:08.992Z",
+    "modified": "2023-06-07T17:09:47.527Z",
     "headers": [],
     "params": [],
     "body": {
@@ -17,7 +17,7 @@
       "form": [
         {
           "name": "user_username",
-          "value": "bob1234"
+          "value": "bob1"
         },
         {
           "name": "user_email",
@@ -25,7 +25,7 @@
         },
         {
           "name": "user_password",
-          "value": "Farvel1234"
+          "value": "MMD123mmd"
         },
         {
           "name": "user_first_name",
@@ -514,5 +514,30 @@
         "value": "info"
       }
     ]
+  },
+  {
+    "_id": "1fed2bd1-1268-4232-93f7-ed2b64096c78",
+    "colId": "c99eead9-24a4-4c6d-92be-e2e370cb92ca",
+    "containerId": "",
+    "name": "upload-avatar",
+    "url": "127.0.0.1:5000/api-upload-avatar",
+    "method": "POST",
+    "sortNum": 170000,
+    "created": "2023-06-06T21:38:22.907Z",
+    "modified": "2023-06-07T17:32:16.793Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [],
+      "files": [
+        {
+          "name": "profile_image",
+          "value": "../../../Skærmbillede 2023-06-07 kl. 14.14.32.png"
+        }
+      ]
+    },
+    "tests": []
   }
 ]

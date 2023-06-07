@@ -15,6 +15,7 @@ import apis.api_reset_password
 import apis.api_login
 import apis.api_deactivate_user_email
 import apis.api_deactivate_user
+import apis.api_upload_image
 
 import bridges.logout
 
@@ -112,6 +113,7 @@ def render_index():
       user = get_user[0]
   else:
     user = None
+    response.set_header("Location", "/logout")
   return template("index", title="Twitter", user=user, tweets=tweets, trends=trends, follows=follows, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
 
 
@@ -134,22 +136,26 @@ def _(user_username):
       user = get_user[0]
     else:
       user = None
-
+      
+    
+    print("username", user_username)
     db = sqlite3.connect(os.getcwd()+"/twitter.db")
     db.row_factory = dict_factory
     user_profile = db.execute("SELECT * FROM users WHERE user_username=? COLLATE NOCASE",(user_username,)).fetchone()
-    print("profile", user_profile)
+    print(user_profile)
+
     # Get the user's id
     user_id = user_profile['user_id']
-    print(f"user id:{user_id}")
+    # print(f"user id:{user_id}")
     # With that id, look up/get the respectives tweets
     tweets = db.execute("SELECT * FROM tweets WHERE tweet_user_fk=? ORDER BY tweet_created_at DESC LIMIT 10", (user_id,)).fetchall()
-    print(tweets)
+    # print(tweets)
     # pass the tweets to the view. Template it
     
-    print("visited user profile", user_profile) # {'id': '51602a9f7d82472b90ed1091248f6cb1', 'username': 'elonmusk', 'name': 'Elon', 'last_name': 'Musk', 'total_followers': '128900000', 'total_following': '177', 'total_tweets': '22700', 'avatar': '51602a9f7d82472b90ed1091248f6cb1.jpg'}
+    # print("visited user profile", user_profile) # {'id': '51602a9f7d82472b90ed1091248f6cb1', 'username': 'elonmusk', 'name': 'Elon', 'last_name': 'Musk', 'total_followers': '128900000', 'total_following': '177', 'total_tweets': '22700', 'avatar': '51602a9f7d82472b90ed1091248f6cb1.jpg'}
     return template("profile", title="Twitter", user_profile=user_profile, user=user, trends=trends, tweets=tweets, follows=follows)
   except Exception as ex:
+    if 'db' in locals(): db.rollback()
     print(ex)
     traceback.print_exc()
     return "error"
