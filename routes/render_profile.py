@@ -15,9 +15,9 @@ trends = [
 ]
 
 follows =  [
-  {"image_name":"8702b025cb1d4cd1be7d9eb41b46a152.jpg", "fullname": "Elon Musk", "username": "elonmusk"},
-  {"image_name":"0891b4346ba74597a28a1ba171a3e60a.jpg", "fullname": "Rihanna", "username": "rihanna"},
-  {"image_name":"9873866baf6f462d874e019dc11cdfcc.jpg", "fullname": "Shakira", "username": "shakira"},
+    {"image_name":"8702b025cb1d4cd1be7d9eb41b46a152.jpg", "fullname": "Elon Musk", "username": "elonmusk"},
+    {"image_name":"0891b4346ba74597a28a1ba171a3e60a.jpg", "fullname": "Rihanna", "username": "rihanna"},
+    {"image_name":"9873866baf6f462d874e019dc11cdfcc.jpg", "fullname": "Shakira", "username": "shakira"},
 ]
 
 @get("/<user_username>")

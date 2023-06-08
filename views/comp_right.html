@@ -67,7 +67,7 @@
         <!-- person -->
         <a href="/{{follow['username']}}" class="flex items-center px-4 py-3 hover:bg-zinc-800">
         <div class="mr-3">
-            <img src="/images/avatar/{{follow['image_name']}}" class="w-12 h-12 rounded-full" />
+            <img src="/images/avatar/{{follow['image_name']}}" class="object-cover w-12 h-12 rounded-full" />
         </div>
         <div class="">
             <div class="text-base font-bold text-gray-200">{{follow["fullname"]}}</div>
@@ -129,6 +129,26 @@
             const profile_image = frm.querySelector("input[name='profile_image']").value
             console.log(profile_image)
         }
+        function formatDate(unixTimestamp) {
+            const date = new Date(unixTimestamp * 1000);
+            const day = date.getDate();
+            const monthIndex = date.getMonth();
+            const months = [
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            ];
+            const month = months[monthIndex];
+            return day + " " + month;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const tweetDateElements = document.getElementsByClassName("tweet-date");
+            for (let i = 0; i < tweetDateElements.length; i++) {
+            const tweetCreatedAt = tweetDateElements[i].getAttribute("data-timestamp");
+            const formattedDate = formatDate(tweetCreatedAt);
+            tweetDateElements[i].textContent = formattedDate;
+            }
+        });
     </script>
 </body>
 </html>  

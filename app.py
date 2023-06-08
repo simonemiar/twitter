@@ -114,7 +114,12 @@ def render_index():
   else:
     user = None
     response.set_header("Location", "/logout")
-  return template("index", title="Twitter", user=user, fake_tweets=fake_tweets, trends=trends, follows=follows, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
+  
+  db = x.db()
+  # get tweets
+  tweets = db.execute("SELECT u.user_username, u.user_avatar, u.user_first_name, u.user_last_name, t.tweet_message, t.tweet_created_at, t.tweet_image, t.tweet_total_replies, t.tweet_total_likes, t.tweet_total_retweets, t.tweet_total_views FROM users u INNER JOIN tweets t ON u.user_id = t.tweet_user_fk ORDER BY t.tweet_created_at DESC;").fetchall()
+  print(tweets)
+  return template("index", title="Twitter", user=user, tweets=tweets, fake_tweets=fake_tweets, trends=trends, follows=follows, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
 
 
 ##############################
