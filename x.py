@@ -25,7 +25,7 @@ def db():
 
 ###################################
 TWEET_MIN_LEN = 1
-TWEET_MAX_LEN = 10
+TWEET_MAX_LEN = 280
 
 def validate_tweet():
   error = f"message min {TWEET_MIN_LEN} max {TWEET_MAX_LEN} characters"
@@ -111,17 +111,22 @@ REGEX_PASSWORD = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$"
 def validate_password():
   print("*"*30)
   error = f"Password has to be between {USER_PASSWORD_MIN_LENGTH} to {USER_PASSWORD_MAX_LENGTH} numbers, at least one upper case English letter, one lower case English letter and one number"
-  user_password = request.forms.get("user_password")
-  if len(request.forms.user_password) < USER_PASSWORD_MIN_LENGTH: raise Exception(400, error)
-  if len(request.forms.user_password) > USER_PASSWORD_MAX_LENGTH: raise Exception(400, error)
-  if not re.match(REGEX_PASSWORD, request.forms.user_password): raise Exception(400, error)  
+  # user_password = request.forms.get("user_password")
+  if len(request.forms.user_password) < USER_PASSWORD_MIN_LENGTH: raise Exception(error)
+  if len(request.forms.user_password) > USER_PASSWORD_MAX_LENGTH: raise Exception(error)
+  if not re.match(REGEX_PASSWORD, request.forms.user_password): raise Exception(error)  
   print(request.forms.user_password)
   return request.forms.user_password
 
 def validate_user_confirm_password():
   error = f"user_password and user_confirm_password do not match"
-  confirm_user_password = request.forms.get("confirm_user_password")
-  request.forms.user_password = request.forms.user_password.strip()
-  request.forms.user_confirm_password = request.forms.user_confirm_password.strip()
-  if request.forms.user_confirm_password != request.forms.user_password: raise Exception(400, error)
-  return request.forms.user_confirm_password
+  user_password = request.forms.get("user_password")
+  user_confirm_password = request.forms.get("user_confirm_password")
+  if not user_password or not user_confirm_password:
+      raise Exception("Both password fields must be filled")
+  user_password = user_password.strip()
+  user_confirm_password = user_confirm_password.strip()
+  if user_confirm_password != user_password:
+      raise Exception(error)
+  print(user_confirm_password)
+  return user_confirm_password

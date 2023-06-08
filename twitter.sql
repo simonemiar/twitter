@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users(
     user_id                TEXT NOT NULL UNIQUE,
     user_username          TEXT NOT NULL UNIQUE,
-    user_email             TEXT NOT NULL,
+    user_email             TEXT NOT NULL UNIQUE,
     user_password          TEXT NOT NULL,
     user_first_name        TEXT NOT NULL,
     user_last_name         TEXT DEFAULT "",
@@ -57,19 +57,6 @@ INSERT INTO tweets VALUES("6af76dfe8e924dd2a4680f287deb40f8", "8702b025cb1d4cd1b
 INSERT INTO tweets VALUES("08eec4384bd94e3095b15f0c1f9bef13", "8702b025cb1d4cd1be7d9eb41b46a152", "1685895834", "11", "", "1/1/2000", "1", "2", "3", "4");
 INSERT INTO tweets VALUES("26864b1cf12848e284b9d9bf0d630e4a", "8702b025cb1d4cd1be7d9eb41b46a152", "1685894909", "My first tweet æver", "", "1/1/2000", "1", "2", "3", "4");
 
--- SELECT
---     u.user_username,
---     u.user_avatar,
---     t.tweet_message,
---     t.tweet_created_at,
---     t.tweet_image,
---     t.tweet_total_replies,
---     t.tweet_total_likes,
---     t.tweet_total_retweets,
---     t.tweet_total_views
--- FROM
---     users u
---     INNER JOIN tweets t ON u.user_id = t.tweet_user_fk;
 
 -- SELECT * FROM tweets
 

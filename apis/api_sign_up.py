@@ -22,16 +22,14 @@ def _():
         user_id = str(uuid.uuid4()).replace("-","")
         user_verification_key = str(uuid.uuid4()).replace("-","")
 
-        # get default avatar
+        # get the default avatar
         default_avatar_path = "images/avatar/default_avatar.jpg"
+
         # Generate a unique filename for the user's avatar
         avatar_uuid = str(uuid.uuid4().hex)
-        print(avatar_uuid)
         avatar_extension = os.path.splitext(default_avatar_path)[1]
-        print(avatar_extension)
         avatar_filename = avatar_uuid + avatar_extension
-        print(avatar_filename)
-        # default_avatar_path.save(f"images/avatar/{avatar_filename}")
+
         # Create the new avatar path
         new_avatar_path = os.path.join('images/avatar', avatar_filename)
 
@@ -78,6 +76,7 @@ def _():
         print(e)
         if 'db' in locals(): db.rollback()
         traceback.print_exc()
+        response.status = 400
         return {"info":str(e)}
     finally:
         if "db" in locals(): db.close()

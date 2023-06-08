@@ -1,4 +1,4 @@
-from bottle import post, request
+from bottle import post, request, response
 import x
 import jwt
 import bcrypt
@@ -10,6 +10,9 @@ SECRET_KEY_RESET = "5e28e54695db4d92980be20ea198c6a0"
 def _():
     try:
         print("reset post")
+        user_password = x.validate_password()
+        user_confirm_password = x.validate_user_confirm_password()
+
         # jwt token decoded from hidden input field
         token = request.forms.get("token")
         decoded_token = jwt.decode(token, SECRET_KEY_RESET, algorithms=['HS256'])
@@ -41,6 +44,7 @@ def _():
     except Exception as e:
         print(e)
         if 'db' in locals(): db.rollback()
+        response.status = 400
         return {"info":str(e)}
     finally:
         if "db" in locals(): db.close()

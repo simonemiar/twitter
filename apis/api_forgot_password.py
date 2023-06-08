@@ -17,7 +17,6 @@ def _():
 
         # Generate JWT token
         token = jwt.encode({'user_email': user_email}, SECRET_KEY_RESET, algorithm='HS256')
-        # print(type(token))
         
         if user:
             print("User found")
@@ -31,6 +30,7 @@ def _():
     except Exception as e:
         print(e)
         traceback.print_exc()
+        response.status = 400
         if 'db' in locals(): db.rollback()
         return {"info":str(e)}
     finally:

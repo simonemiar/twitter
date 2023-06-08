@@ -126,6 +126,12 @@
               <span class="ml-4">
                 <strong>@</strong>{{profile["user_username"]}}
               </span>
+              <div class="flex items-center ml-2 text-base font-bold text-gray-500">
+                <span>·</span>
+              </div>
+              <div class="flex items-center ml-2 text-base text-gray-500">
+                <span class="tweet-date" data-timestamp="{{ tweet['tweet_created_at'] }}"></span>
+            </div>
             </div>
             <svg
               width="32"

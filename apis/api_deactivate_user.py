@@ -1,10 +1,10 @@
-from bottle import post, request
+from bottle import delete, request
 import x
 import jwt
 
 SECRET_KEY_DELETE = "c5d633499c044dab99e2b7f66c970ecf"
 
-@post('/api-deactivate-user')
+@delete('/api-deactivate-user')
 def _():
     try:
         print("delete user post")

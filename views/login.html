@@ -15,7 +15,7 @@
                 <img class="w-20" src="/images/twitter_bird_logo.png" alt="twitter logo">
             </div>
             <h1 class="my-2 text-2xl text-white">Sign In</h1>
-            <form class="grid gap-2" method="POST" action="/login">
+            <form class="grid gap-2" method="POST" onsubmit="login(); return false">
                 <label class="text-white" for="email">Email</label>
                 <input class="p-2 text-sm" name="user_email" type="text" placeholder="Please insert your email">
                 <label class="text-white" for="password">Password</label>
@@ -26,5 +26,24 @@
             <a class="text-xs text-gray-600" href="/forgot-password">forgot your password?</a>
         </div>
 </section>
+<script>
+    async function login(){
+        const frm = event.target 
+        console.log(new FormData(frm))
+        const conn = await fetch("/login", {
+            method: "POST",
+            body: new FormData(frm)
+
+        })
+        const data = await conn.json()
+        console.log("User created", data)
+        const user_email = frm.querySelector("input[name='user_email']").value
+        console.log(user_email)
+        location.href = "/"
+        console.log("redirect")
+        
+
+    }
+</script>
 </body>
 </html>
