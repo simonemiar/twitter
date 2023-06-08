@@ -15,7 +15,7 @@ import apis.api_reset_password
 import apis.api_login
 import apis.api_deactivate_user_email
 import apis.api_deactivate_user
-import apis.api_upload_image
+import apis.api_upload_avatar
 
 import bridges.logout
 
@@ -26,7 +26,7 @@ import routes.render_verified
 import routes.render_forgot_password
 import routes.render_reset_password
 import routes.render_deactivate_user
-
+import routes.render_profile
 ##############################
 
 @get("/js/<filename>")
@@ -46,25 +46,25 @@ def git_update():
 
 # This data will come from the database
 # For now, we just hard codedthe data
-tweets = [
-  { "verified": 1, "image_name":"1.jpg", "fullname":"Simone Kragh-Jacobsen", "username":"simonemiar","message":"lol","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
-  { "verified": 1, "image_name":"2.jpg", "fullname":"Rihanna", "username":"rihanna","message":"I am THE president","message_image":"1.png","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
-  { "verified": 1, "image_name":"1.jpg", "fullname":"Elon Musk", "username":"elonmusk","message":"My first tweet","message_image":"1.png","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
-  { "verified": 1, "image_name":"3.jpg", "fullname":"Shakira", "username":"shakira","message":"My first tweet","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
+fake_tweets = [
+  { "verified": 1, "image_name":"8671046ba9204e9b8c821196a7e8987b.jpg", "fullname":"Simone Kragh-Jacobsen", "username":"simonemiar","message":"lol","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
+  { "verified": 1, "image_name":"0891b4346ba74597a28a1ba171a3e60a.jpg", "fullname":"Rihanna", "username":"rihanna","message":"I am THE president","message_image":"1.png","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
+  { "verified": 1, "image_name":"8702b025cb1d4cd1be7d9eb41b46a152.jpg", "fullname":"Elon Musk", "username":"elonmusk","message":"My first tweet","message_image":"1.png","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
+  { "verified": 1, "image_name":"9873866baf6f462d874e019dc11cdfcc.jpg", "fullname":"Shakira", "username":"shakira","message":"My first tweet","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
 ]
 
 trends = [
-  {"title": "One", "total_hashtags":1},
-  {"title": "Two", "total_hashtags":2},
-  {"title": "Tree", "total_hashtags":3},
-  {"title": "Four", "total_hashtags":4},
-  {"title": "Five", "total_hashtags":5},
+    {"title": "#RENAISSANCETOUR", "total_hashtags":1},
+    {"title": "StarWars", "total_hashtags":2},
+    {"title": "#Web3", "total_hashtags":4.23},
+    {"title": "dkpol", "total_hashtags":1.576},
+    {"title": "politidk", "total_hashtags":243},
 ]
 
 follows =  [
-  {"image_name":"1.jpg", "fullname": "Elon Musk", "username": "elonmusk"},
-  {"image_name":"2.jpg", "fullname": "Rihanna", "username": "rihanna"},
-  {"image_name":"3.jpg", "fullname": "Shakira", "username": "shakira"},
+  {"image_name":"8702b025cb1d4cd1be7d9eb41b46a152.jpg", "fullname": "Elon Musk", "username": "elonmusk"},
+  {"image_name":"0891b4346ba74597a28a1ba171a3e60a.jpg", "fullname": "Rihanna", "username": "rihanna"},
+  {"image_name":"9873866baf6f462d874e019dc11cdfcc.jpg", "fullname": "Shakira", "username": "shakira"},
 ]
 
 ##############################
@@ -114,7 +114,7 @@ def render_index():
   else:
     user = None
     response.set_header("Location", "/logout")
-  return template("index", title="Twitter", user=user, tweets=tweets, trends=trends, follows=follows, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
+  return template("index", title="Twitter", user=user, fake_tweets=fake_tweets, trends=trends, follows=follows, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
 
 
 ##############################
@@ -123,46 +123,6 @@ def dict_factory(cursor, row):
   col_names = [col[0] for col in cursor.description]
   return {key: value for key, value in zip(col_names, row)}
 
-##############################
-# profile page setup 
-
-@get("/<user_username>")
-# @view("profile")
-def _(user_username):
-  try:
-    # get logged in user
-    get_user = request.get_cookie("user", secret="my-secret")
-    if get_user:
-      user = get_user[0]
-    else:
-      user = None
-      
-    
-    print("username", user_username)
-    db = sqlite3.connect(os.getcwd()+"/twitter.db")
-    db.row_factory = dict_factory
-    user_profile = db.execute("SELECT * FROM users WHERE user_username=? COLLATE NOCASE",(user_username,)).fetchone()
-    print(user_profile)
-
-    # Get the user's id
-    user_id = user_profile['user_id']
-    # print(f"user id:{user_id}")
-    # With that id, look up/get the respectives tweets
-    tweets = db.execute("SELECT * FROM tweets WHERE tweet_user_fk=? ORDER BY tweet_created_at DESC LIMIT 10", (user_id,)).fetchall()
-    # print(tweets)
-    # pass the tweets to the view. Template it
-    
-    # print("visited user profile", user_profile) # {'id': '51602a9f7d82472b90ed1091248f6cb1', 'username': 'elonmusk', 'name': 'Elon', 'last_name': 'Musk', 'total_followers': '128900000', 'total_following': '177', 'total_tweets': '22700', 'avatar': '51602a9f7d82472b90ed1091248f6cb1.jpg'}
-    return template("profile", title="Twitter", user_profile=user_profile, user=user, trends=trends, tweets=tweets, follows=follows)
-  except Exception as ex:
-    if 'db' in locals(): db.rollback()
-    print(ex)
-    traceback.print_exc()
-    return "error"
-  finally:
-    if "db" in locals(): db.close()
-
-##############################
 
 try:
   import production

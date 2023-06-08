@@ -1,0 +1,7 @@
+## Start up the system ##
+
+python3 -m venv .
+source bin/activate
+npx tailwindcss -i ./input.css -o ../app.css --watch
+
+python3 update_db.py

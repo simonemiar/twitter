@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/app.css" />
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
     <title>{{title}}</title>
 </head>
 <body class="bg-black">
@@ -15,17 +16,17 @@
             </div>
             <h1 class="my-2 text-2xl text-white">Sign Up</h1>
             <form class="grid gap-2" method="POST" onsubmit="signUp(); return false">
-                <label class="text-white" for="username">Username</label>
-                <input class="p-2 text-sm" name="user_username" type="text" placeholder="Username">
-                <label class="text-white" for="first_name">First name</label>
-                <input class="p-2 text-sm" name="user_first_name" type="text" placeholder="Firstname">
-                <label class="text-white" for="last_name">Last name</label>
-                <input class="p-2 text-sm" name="user_last_name" type="text" placeholder="Lastname">
-                <label class="text-white" for="email">Email</label>
-                <input class="p-2 text-sm" name="user_email" type="text" placeholder="Email">
-                <label class="text-white" for="password">Password</label>
-                <input class="p-2 text-sm" name="user_password" type="password" placeholder="Password">
-                <button class="p-2 text-xl text-white bg-sky-500">Sign Up</button>
+                <label class="text-sm text-white" for="username">Username</label>
+                <input class="p-2 text-sm text-gray-200 bg-black border border-gray-200 rounded-sm" name="user_username" type="text" placeholder="Username...">
+                <label class="text-sm text-white" for="first_name">First name</label>
+                <input class="p-2 text-sm text-gray-200 bg-black border border-gray-200 rounded-sm" name="user_first_name" type="text" placeholder="Firstname...">
+                <label class="text-sm text-white" for="last_name">Last name</label>
+                <input class="p-2 text-sm text-gray-200 bg-black border border-gray-200 rounded-sm" name="user_last_name" type="text" placeholder="Lastname...">
+                <label class="text-sm text-white" for="email">Email</label>
+                <input class="p-2 text-sm text-gray-200 bg-black border border-gray-200 rounded-sm" name="user_email" type="text" placeholder="Email...">
+                <label class="text-sm text-white" for="password">Password</label>
+                <input class="p-2 text-sm text-gray-200 bg-black border border-gray-200 rounded-sm" name="user_password" type="password" placeholder="Password...">
+                <button class="w-full px-8 py-2 my-2 ml-auto text-lg font-semibold text-white rounded-full bg-sky-500">Sign Up</button>
             </form>
         </div>
     </section>

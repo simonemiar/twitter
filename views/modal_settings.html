@@ -3,30 +3,29 @@
     <div onclick="document.querySelector('#settings_modal').style.display='none'"
     class="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
     <div class="absolute px-10 py-10 mt-24 bg-black border border-gray-200 rounded-lg left-1/4 lg:left-1/3 lg:px-40 z-100">
-        <div class="grid items-center justify-center">
-        <img class="w-40 rounded-full" src="/images/avatar/{{user_profile['user_avatar']}}" alt="">
-        </div>
-        <form method="POST" enctype="multipart/form-data" onsubmit="uploadAvatar(); return false">
-        <input type="file" name="profile_image">
-        <!-- <input type="file" name="upload_profile_image" accept="image/jpeg, image/png, image/jpg"> -->
-        <button class="border border-gray-200" type="submit">upload</button>
-        </form>
-        <form class="">
-        <div class="grid m-2">
-            <label for="">Username</label>
-            <input type="text" class="p-2 text-white bg-black rounded-sm outline outline-1 outline-zinc-500" readonly placeholder="{{user_profile['user_username']}}">
-        </div>
-        <div class="grid m-2">
-            <label for="">Firstname</label>
-            <input type="text" class="p-2 text-white bg-black rounded-sm outline outline-1 outline-zinc-500" readonly placeholder="{{user_profile['user_first_name']}}">
-        </div>
-        <div class="grid m-2">
-            <label for="">Lastname</label>
-            <input type="text" class="p-2 text-white bg-black rounded-sm outline outline-1 outline-zinc-500" readonly placeholder="{{user_profile['user_last_name']}}">
-        </div>
-        <div class="grid gap-4">
-            <button class="w-full px-8 py-2 ml-auto font-semibold text-black bg-gray-200 rounded-full">update user</button>
-        </div>
+        <form class="grid items-center justify-center" method="POST" enctype="multipart/form-data" onsubmit="uploadAvatar(); return false">
+            <div class="relative m-auto">
+                <img class="w-24 rounded-full" src="/images/avatar/{{profile['user_avatar']}}" alt="avatar image">
+                <label class="absolute items-center cursor-pointer top-6 left-8" for="actual-btn"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="bg-black" d="M19 8V6h-2V4h2V2h2v2h2v2h-2v2h-2ZM3 22q-.825 0-1.413-.588T1 20V8q0-.825.588-1.413T3 6h3.15L8 4h6v2H8.875L7.05 8H3v12h16v-9h2v9q0 .825-.588 1.413T19 22H3Zm8-3.5q1.875 0 3.188-1.313T15.5 14q0-1.875-1.313-3.188T11 9.5q-1.875 0-3.188 1.313T6.5 14q0 1.875 1.313 3.188T11 18.5Zm0-2q-1.05 0-1.775-.725T8.5 14q0-1.05.725-1.775T11 11.5q1.05 0 1.775.725T13.5 14q0 1.05-.725 1.775T11 16.5Zm0-2.5Z"/></svg></label>
+                <input type="file" id="actual-btn" hidden name="profile_image">
+            </div>
+            <!-- <input type="file" name="upload_profile_image" accept="image/jpeg, image/png, image/jpg"> -->
+            <!-- <button class="border border-gray-200" type="submit">upload</button> -->
+            <div class="grid m-2">
+                <label class="text-sm" for="">Username</label>
+                <input type="text" class="p-2 text-white bg-black rounded-sm outline outline-1 outline-zinc-500" readonly placeholder="{{profile['user_username']}}">
+            </div>
+            <div class="grid m-2">
+                <label class="text-sm" for="">Firstname</label>
+                <input type="text" class="p-2 text-white bg-black rounded-sm outline outline-1 outline-zinc-500" readonly placeholder="{{profile['user_first_name']}}">
+            </div>
+            <div class="grid m-2">
+                <label class="text-sm" for="">Lastname</label>
+                <input type="text" class="p-2 text-white bg-black rounded-sm outline outline-1 outline-zinc-500" readonly placeholder="{{profile['user_last_name']}}">
+            </div>
+            <div class="grid gap-4">
+                <button type="submit" class="w-full px-8 py-2 ml-auto font-semibold text-black bg-gray-200 rounded-full">update user</button>
+            </div>
         </form>
         <form class="mt-2" method="POST" onsubmit="deactivateUser(); return false">
         <button type="submit" class="w-full px-8 py-2 ml-auto font-semibold text-white bg-red-800 rounded-full">deactivate user</button>

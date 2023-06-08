@@ -55,6 +55,7 @@
     <!-- end trending -->
 
     <!-- who to follow -->
+    % if user:
     <div
         class="sticky flex-col hidden w-full gap-4 pt-4 mt-4 lg:flex rounded-2xl bg-zinc-900 top-20"
     >
@@ -83,6 +84,7 @@
 
         <a href="" class="p-4 text-base rounded-b-2xl text-sky-500 hover:bg-zinc-800"> Show more </a>
     </div>
+    % end
     <!-- end who to follow  -->
     
     </div>
@@ -115,6 +117,7 @@
         }
 
         async function uploadAvatar(){
+            document.querySelector('#settings_modal').style.display='none'
             const frm = event.target 
             console.log(new FormData(frm))
             const conn = await fetch("/api-upload-avatar", {

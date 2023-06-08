@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="/app.css" />
+<link rel="icon" type="image/x-icon" href="/images/logo.png">
 <title>{{title}}</title>
 </head>
 
@@ -23,10 +24,18 @@ class="
 <!-- login and signup section -->
 <div class="fixed bottom-0 z-10">
 % if user is None:
-<div class="w-screen py-2 bg-sky-400">
-    <div class="flex justify-center gap-2">
-    <a class="p-1 px-10 border border-white rounded-full" href="/login">Login</a>
-    <a class="p-1 px-10 bg-white rounded-full text-sky-500" href="/signup">Signup</a>
+<div class="flex w-screen py-2 bg-sky-400">
+    <div class="flex justify-center m-auto my-1">
+        <div class="flex justify-between w-[700px]">
+            <div>
+                <h3 class="text-3xl font-bold">Don't miss what's happening</h3>
+                <p class="font-medium">People on twitter are the first to know</p>
+            </div>
+            <div class="my-4">
+                <a class="p-2 px-8 font-bold border border-white rounded-full" href="/login">Login</a>
+                <a class="p-2 px-8 ml-2 font-bold text-black bg-white rounded-full" href="/signup">Signup</a>
+            </div>
+        </div>
     </div>
 </div>
 % end 

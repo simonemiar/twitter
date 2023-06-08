@@ -7,10 +7,13 @@ import traceback
 @post("/tweet")
 def _():
   try: # SUCCESS
+    get_user = request.get_cookie("user", secret="my-secret")
+    logged_in_user = get_user[0]['user_id']
     x.validate_tweet()
     db = x.db()
+    
     tweet_id = str(uuid.uuid4().hex) #.hex is removing the - from the tweet_id
-    tweet_user_fk = "8702b025cb1d4cd1be7d9eb41b46a152"
+    tweet_user_fk = logged_in_user
     tweet_created_at = int(time.time()) #make it one
     tweet_message = request.forms.get("tweet_message")
     tweet_image = ""

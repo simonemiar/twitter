@@ -1,9 +1,8 @@
-from bottle import post, response, request
+from bottle import post, response, request, template
 import time
 import x
 import bcrypt
 import traceback
-
 
 @post("/login")
 def _():
@@ -20,11 +19,14 @@ def _():
         user_password = user[0]['user_password']
         print(user_password)
 
-        if not user_password == "123":
+        if user_password == "MMDkodeord123":
+            response.status = 400
+            raise Exception("Your password are not hashed")
             # decode hashed password 
-            user_password = bcrypt.checkpw(form_password.encode('utf8'), user_password)
-            print(user_password)
-            
+
+        user_password = bcrypt.checkpw(form_password.encode('utf8'), user_password)
+        print(user_password)
+
         logged_in_user = user[0]['user_email']
         update_verified_user = user[0]['user_verified']
 
@@ -34,23 +36,16 @@ def _():
         if not user_password == True:
             response.status = 400
             raise Exception("Password not found")
-        # if not form_password == user_password:
-        #     response.status = 400
-        #     raise Exception("Password not found")
         if not update_verified_user == 1:
             response.status = 400
             raise Exception("Your user not verified, please check your email")
         print("test")
-        response.set_cookie("user", user, secret="my-secret", httponly=True)
-        response.status = 303 # is 303 wrong
+        response.set_cookie("user", user, secret="my-secret", httponly=True, samesite="None")
+        # response.status = 303 # is 303 wrong
         print("You are now logging in")
+        response.status = 303
 
-        # Update user_logged_in boolean
-        db.execute("UPDATE users SET user_logged_in=? WHERE user_email=?", (1, logged_in_user)).fetchone()
-        db.commit() #without this, changes will not be saved in the database
-
-
-        return response.set_header("Location", "/")
+        return response.set_header(f"Location", "/")
     except Exception as ex:
         print(ex)
         traceback.print_exc()
@@ -59,4 +54,3 @@ def _():
         return response.set_header(f"Location", "/login?error={ex}")
     finally: # This will always take place
         if "db" in locals(): db.close()
-    

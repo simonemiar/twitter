@@ -55,8 +55,7 @@ def _():
             "user_avatar": avatar_filename, 
             "user_banner": "default_banner.jpg",
             "user_verified": 0,
-            "user_verification_key" : user_verification_key,
-            "user_logged_in" : 0
+            "user_verification_key" : user_verification_key
         }
         # create placed holders for values
         values = ""
