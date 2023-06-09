@@ -13,10 +13,11 @@
     <div class="w-full">
     <div class="flex">
         <div class="flex">
-        <span class="flex items-center gap-2 text-base font-bold">
-            {{tweet["user_first_name"]}} {{tweet["user_last_name"]}} 
-            
+        <a class="flex items-center gap-2" href="/{{tweet['user_username']}}">
+        <span class="text-base font-bold  hover:underline">
+            {{tweet["user_first_name"]}} {{tweet["user_last_name"]}}
         </span>
+        </a>
         <span class="flex items-center ml-4 text-base text-gray-500">
             <strong>@</strong>{{tweet["user_username"]}}
         </span>

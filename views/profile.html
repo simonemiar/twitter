@@ -119,10 +119,11 @@
         <div class="w-full">
           <div class="flex">
             <div class="flex">
-              <span class="flex items-center gap-2 font-bold">
+              <a class="flex items-center gap-2" href="/{{profile['user_username']}}">
+              <span class="font-bold hover:underline">
                 {{profile["user_first_name"]}} {{profile["user_last_name"]}} 
-                
               </span>
+              </a>
               <span class="ml-4">
                 <strong>@</strong>{{profile["user_username"]}}
               </span>

@@ -566,5 +566,29 @@
       ]
     },
     "tests": []
+  },
+  {
+    "_id": "68f5fa4e-72bf-42ce-88f2-7bb5dcf69bcb",
+    "colId": "c99eead9-24a4-4c6d-92be-e2e370cb92ca",
+    "containerId": "",
+    "name": "verify-user",
+    "url": "127.0.0.1:4000/api-verify-user",
+    "method": "POST",
+    "sortNum": 12500,
+    "created": "2023-06-09T01:50:48.142Z",
+    "modified": "2023-06-09T02:10:07.566Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "verification_key",
+          "value": "4dfc1a4f7734475c9f8265674f5d5271"
+        }
+      ]
+    },
+    "tests": []
   }
 ]

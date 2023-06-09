@@ -10,12 +10,28 @@
 </head>
 <body class="bg-black">
     <section class="flex items-center justify-center min-h-screen ">
-        <div class="grid text-white">
-            <p class="text-3xl text-center">You are now verified</p>
+        <form class="grid text-white" method="POST" onsubmit="verifyUser(); return false">
+            <p class="text-3xl text-center">Please click below button to verify user</p>
+            <input hidden type="text" name="user_verification_key" value="{{user_verification_key}}">
             <div class="grid justify-center w-full">
-            <a href="/" class="px-8 py-2 my-2 ml-auto text-lg font-semibold text-white rounded-full bg-sky-500">return to twitter</a>
+                <button type="submit" class="px-8 py-2 my-2 ml-auto text-lg font-semibold text-white rounded-full bg-sky-500">verify your user</button>
             </div>
-        </div>
-    </section>  
+        </form>
+    </section>
+    <script>
+        async function verifyUser(){
+            const frm = event.target 
+            console.log(new FormData(frm))
+            const conn = await fetch("/api-verify-user", {
+                method: "POST",
+                body: new FormData(frm)
+
+            })
+            const data = await conn.json()
+            console.log("User is now verified", data)
+            location.href = "/"
+            console.log("redirect")
+        }
+    </script>  
 </body>
 </html>

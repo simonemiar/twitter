@@ -9,6 +9,7 @@ import traceback
 
 import apis.api_tweet
 import apis.api_sign_up
+import apis.api_verify_user
 import apis.api_follow
 import apis.api_forgot_password
 import apis.api_reset_password
@@ -46,12 +47,6 @@ def git_update():
 
 # This data will come from the database
 # For now, we just hard codedthe data
-fake_tweets = [
-  { "verified": 1, "image_name":"8671046ba9204e9b8c821196a7e8987b.jpg", "fullname":"Simone Kragh-Jacobsen", "username":"simonemiar","message":"lol","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
-  { "verified": 1, "image_name":"0891b4346ba74597a28a1ba171a3e60a.jpg", "fullname":"Rihanna", "username":"rihanna","message":"I am THE president","message_image":"1.png","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
-  { "verified": 1, "image_name":"8702b025cb1d4cd1be7d9eb41b46a152.jpg", "fullname":"Elon Musk", "username":"elonmusk","message":"My first tweet","message_image":"1.png","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
-  { "verified": 1, "image_name":"9873866baf6f462d874e019dc11cdfcc.jpg", "fullname":"Shakira", "username":"shakira","message":"My first tweet","total_messages":"1","total_retweets":"2","total_likes":"3","total_dislikes":"4",},
-]
 
 trends = [
     {"title": "#RENAISSANCETOUR", "total_hashtags":1},
@@ -119,7 +114,7 @@ def render_index():
   # get tweets
   tweets = db.execute("SELECT u.user_username, u.user_avatar, u.user_first_name, u.user_last_name, t.tweet_message, t.tweet_created_at, t.tweet_image, t.tweet_total_replies, t.tweet_total_likes, t.tweet_total_retweets, t.tweet_total_views FROM users u INNER JOIN tweets t ON u.user_id = t.tweet_user_fk ORDER BY t.tweet_created_at DESC;").fetchall()
   print(tweets)
-  return template("index", title="Twitter", user=user, tweets=tweets, fake_tweets=fake_tweets, trends=trends, follows=follows, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
+  return template("index", title="Twitter", user=user, tweets=tweets, trends=trends, follows=follows, tweet_min_len=x.TWEET_MIN_LEN, tweet_max_len=x.TWEET_MAX_LEN)
 
 
 ##############################
