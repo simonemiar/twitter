@@ -21,10 +21,11 @@ def _():
         if user:
             print("User found")
             send_reset_password_email(user_email, token)
-            return "Reset password email sent"
+            return {"info": "Reset password email sent"}
         else:
             print("User not found")
-            return "Email not found"
+            response.status = 400
+            raise Exception ("Email not found")
 
         return {"info": "email have been sent"}
     except Exception as e:

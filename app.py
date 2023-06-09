@@ -109,12 +109,12 @@ def render_index():
   response.add_header("Pragma", "no-cache")
   response.add_header("Expires", 0)
   get_user = request.get_cookie("user", secret="my-secret")
+  print(get_user)
   if get_user:
-      user = get_user[0]
+      user = get_user
   else:
     user = None
-    response.set_header("Location", "/logout")
-  
+
   db = x.db()
   # get tweets
   tweets = db.execute("SELECT u.user_username, u.user_avatar, u.user_first_name, u.user_last_name, t.tweet_message, t.tweet_created_at, t.tweet_image, t.tweet_total_replies, t.tweet_total_likes, t.tweet_total_retweets, t.tweet_total_views FROM users u INNER JOIN tweets t ON u.user_id = t.tweet_user_fk ORDER BY t.tweet_created_at DESC;").fetchall()
@@ -134,4 +134,4 @@ try:
   application = default_app()
 except Exception as ex:
   print("Running local server")
-  run(host="127.0.0.1", port=5000, debug=True, reloader=True)
+  run(host="127.0.0.1", port=4000, debug=True, reloader=True)

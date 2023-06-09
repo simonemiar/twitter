@@ -3,6 +3,7 @@ import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+
 def send_reset_password_email(user_email, token):
     print("email sended", user_email)
 
@@ -11,7 +12,7 @@ def send_reset_password_email(user_email, token):
     password = "zatovtlritcjgxfq"
 
     message = MIMEMultipart("alternative")
-    message["Subject"] = "reset password test"
+    message["Subject"] = "Forgot password"
     message["From"] = sender_email
     message["To"] = receiver_email
 
@@ -23,11 +24,14 @@ def send_reset_password_email(user_email, token):
     html = f"""\
     <html>
         <body>
-        <p>Hi,<br>
-            reset password?<br>
-
-            <a href="http://127.0.0.1:5000/reset-password/{token}">REZET</a>
-        </p>
+            <h4>Did someone forget their password????</h4><br>
+            <p>Don't you worry we will get you back on Twitter<br>
+            in no time. Please presh below link to reset your password  <br>
+            <br>
+            <a href="http://127.0.0.1:4000/reset-password/{token}">Reset your password here</a>
+            <br>
+            /sincerely twitter
+            </p>
         </body>
     </html>
     """

@@ -3,6 +3,7 @@ import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+
 def send_deactivate_user_email(user_email, delete_token):
     print("email sended", user_email)
 
@@ -11,7 +12,7 @@ def send_deactivate_user_email(user_email, delete_token):
     password = "zatovtlritcjgxfq"
 
     message = MIMEMultipart("alternative")
-    message["Subject"] = "deactivate user test"
+    message["Subject"] = "Delete your user"
     message["From"] = sender_email
     message["To"] = receiver_email
 
@@ -23,11 +24,15 @@ def send_deactivate_user_email(user_email, delete_token):
     html = f"""\
     <html>
         <body>
-        <p>Hi,<br>
-            deactivate password?<br>
-
-            <a href="http://127.0.0.1:5000/deactivate-user/{delete_token}">REZET</a>
-        </p>
+            <h4>Who said delete?</h4><br>
+            <p>Are you sure you want to delete<br>
+            your account on twitter? If you want to<br>
+            proceed with deleting your account, press below link<br>
+            <br>
+            <a href="http://127.0.0.1:4000/deactivate-user/{delete_token}">Delete your user here</a>
+            <br>
+            /sincerely twitter
+            </p>
         </body>
     </html>
     """

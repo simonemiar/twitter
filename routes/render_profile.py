@@ -28,7 +28,7 @@ def _(user_username):
         print(user_username)
         get_user = request.get_cookie("user", secret="my-secret")
         if get_user:
-            user = get_user[0]
+            user = get_user
         else:
             user = None
         

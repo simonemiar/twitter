@@ -4,6 +4,7 @@ import os
 import uuid
 import magic
 import x
+import traceback
 
 @post("/api-upload-avatar")
 def _():
@@ -18,7 +19,8 @@ def _():
         print(ext)
 
         if ext not in (".png", ".jpg", ".jpeg"):
-            raise Exception (400, "file extension not allowed")
+            response.status = 400
+            raise Exception ("file extension not allowed")
 
         # Save the uploaded file to a temporary location
         temp_filename = f"temporary location/{uuid.uuid4().hex}{ext}"
@@ -39,7 +41,7 @@ def _():
 
             # get user from cookie
             user = request.get_cookie("user", secret="my-secret")
-            user_email = user[0]['user_email']
+            user_email = user['user_email']
             print(user_email)
 
             # Open the db and get user
@@ -56,17 +58,19 @@ def _():
             db.execute("UPDATE users SET user_avatar=? WHERE user_email=?", (image_name, user_email))
             db.commit()
 
-            return "Image uploaded successfully!"
+            return {"info": "Image uploaded successfully!"}
         else:
             print("not an image", mime_check)
             os.remove(temp_filename)
             response.status = 400
-            raise Exception("You are only allowed to upload jpg, jpeg or png as images")
+            raise Exception("Nice try, but you are only allowed to upload jpg, jpeg or png as avatar image")
             # create popup error telling which file types if allowed
 
         return {"info": "picture uploaded"}
     except Exception as ex:
+        traceback.print_exc()
         if 'db' in locals(): db.rollback()
-        print(ex)
+        response.status = 400
+        return {"info":str(ex)}
     finally:
         if 'db' in locals(): db.close()

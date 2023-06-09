@@ -10,20 +10,26 @@
 </head>
 <body class="bg-black">
     <section class="flex items-center justify-center min-h-screen ">
-        <div>
+        <div class="w-1/4">
             <div class="grid justify-center m-8">
+                <a href="/">
                 <img class="w-20" src="/images/twitter_bird_logo.png" alt="twitter logo">
+                </a>
             </div>
             <h1 class="my-2 text-2xl text-white">Sign In</h1>
             <form class="grid gap-2" method="POST" onsubmit="login(); return false">
                 <label class="text-white" for="email">Email</label>
                 <input class="p-2 text-sm" name="user_email" type="text" placeholder="Please insert your email">
+                <div class="hidden"><span class="text-xs text-red-600">*Email not found</span></div>
                 <label class="text-white" for="password">Password</label>
                 <input class="p-2 text-sm" name="user_password" type="password" placeholder="Please insert your password">
-                <div class="hidden"><span class="text-xs text-red-600">*Email not found</span></div>
+                <div class="hidden"><span class="text-xs text-red-600">*Password not found</span></div>
                 <button type="submit" class="p-2 text-xl text-white rounded-full bg-sky-500">Sign In</button>
             </form>
-            <a class="text-xs text-gray-600" href="/forgot-password">forgot your password?</a>
+            <div class="grid mt-2">
+                <a href="/forgot-password" type="submit" class="w-full p-2 text-center text-gray-200 bg-black border border-gray-200 rounded-full px-14 text-lh">Forgot password?</a>
+            </div>
+            
         </div>
 </section>
 <script>
@@ -44,6 +50,7 @@
         
 
     }
+
 </script>
 </body>
 </html>

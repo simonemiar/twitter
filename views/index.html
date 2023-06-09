@@ -3,6 +3,10 @@
   <!-- center -->
   <div class="h-full min-h-screen border-zinc-800 border-x">
   <div class="sticky top-0 border-b border-gray-700 backdrop-blur">
+
+    % if user == None:
+    <p class="p-4 text-xl font-bold">Explore</p>
+    % else:
     <p class="p-4 text-xl font-bold">Home</p>
     <div class="flex">
       <a href="" class="w-full p-4 text-base font-bold text-center hover:bg-zinc-900"
@@ -14,9 +18,11 @@
         >Following</a
       >
     </div>
+    % end
   </div>
 
   <!-- whats happening div form -->
+  % if user:
   <div class="flex">
     <div class="p-4">
       <svg
@@ -106,6 +112,8 @@
     </form>
     </div>
   </div>
+  % end
+  
   %include("comp_tweets")  
 
 

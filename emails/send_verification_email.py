@@ -3,6 +3,7 @@ import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+
 def send_verification_email(user_verification_key, user_email):
         print(user_email)
 
@@ -11,7 +12,7 @@ def send_verification_email(user_verification_key, user_email):
         password = "zatovtlritcjgxfq"
 
         message = MIMEMultipart("alternative")
-        message["Subject"] = "multipart test"
+        message["Subject"] = "Verify your user"
         message["From"] = sender_email
         message["To"] = receiver_email
 
@@ -23,11 +24,15 @@ def send_verification_email(user_verification_key, user_email):
         html = f"""\
         <html>
             <body>
-            <p>Hi,<br>
-                Thank you for signing up?<br>
-
-                <a href="http://127.0.0.1:5000/verified/{user_verification_key}">YOUR WEBSITE HERE</a>
-            </p>
+                <h4>Thank you for signing up to Twitter</h4><br>
+                <p>To finish signing up to twitter please<br>
+                presh below link to verify your user. <br>
+                Without verification you will not be able to login to your accout<br>
+                <br>
+                <a href="http://127.0.0.1:4000/verified/{user_verification_key}">Verify your user here</a><br>
+                <br>
+                /sincerely twitter
+                </p>
             </body>
         </html>
         """

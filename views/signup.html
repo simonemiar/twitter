@@ -9,6 +9,7 @@
     <title>{{title}}</title>
 </head>
 <body class="bg-black">
+    %include("modal_signup")
     <section class="flex items-center justify-center min-h-screen ">
         <div>
             <div class="grid justify-center m-8">
@@ -43,12 +44,7 @@
             console.log("User created", data)
             const username = frm.querySelector("input[name='user_username']").value
             console.log(username)
-            
-            // if(something){
-            //     console.log("Cannot login")
-            //     alert()        
-            //     return
-            // }
+            document.querySelector('#signup_modal').style.display='block'
         }
     </script>
 </body>

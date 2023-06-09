@@ -9,7 +9,7 @@ SECRET_KEY_RESET = "5e28e54695db4d92980be20ea198c6a0"
 @post("/api-reset-password")
 def _():
     try:
-        print("reset post")
+        # validate password
         user_password = x.validate_password()
         user_confirm_password = x.validate_user_confirm_password()
 
@@ -26,12 +26,7 @@ def _():
         user_current_password = result['user_password']
         print(user_current_password)
 
-        # validate password
-        user_password = x.validate_password()
-        # user_confirm_password = x.validate_user_confirm_password()
-        # print("check", user_confirm_password)
-
-        #hash the new password
+        # hash the new password
         salt = bcrypt.gensalt()
         new_user_password = bcrypt.hashpw(user_password.encode("utf-8"), salt)
         print("new", new_user_password)

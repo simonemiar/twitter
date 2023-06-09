@@ -1,6 +1,7 @@
-from bottle import post, request
+from bottle import post, request, response
 import jwt
 import uuid
+import traceback
 from emails.send_deactivate_user_email import send_deactivate_user_email
 
 SECRET_KEY_DELETE = "c5d633499c044dab99e2b7f66c970ecf"
@@ -11,7 +12,7 @@ def _():
         print("test")
         # get cookie
         user = request.get_cookie("user", secret="my-secret")
-        user_email = user[0]['user_email']
+        user_email = user['user_email']
         print(user_email)
         
         # Generate JWT token
@@ -21,7 +22,9 @@ def _():
         
         return {'info':'An email with a deactivation link has been sent to your email address.'}
     except Exception as ex:
+        traceback.print_exc()
         if 'db' in locals(): db.rollback()
-        print(ex)
+        response.status = 400
+        return {"info":str(ex)}
     finally:
         if 'db' in locals(): db.close()
